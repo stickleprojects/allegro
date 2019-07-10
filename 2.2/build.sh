@@ -15,5 +15,5 @@
 # allegro_primitives-5           allegro_primitives - Allegro game programming library, primitives addon
 # allegro_audio-5                allegro_audio - Allegro game programming library, audio addon
 # g++ -Iinclude -o $1 $1.cpp 
-g++ -Iinclude -o $1 $1.cpp include/ResourceManager.cpp include/Sprite.cpp include/BitmapResource.cpp `pkg-config --cflags --libs allegro-5 allegro_font-5 allegro_main-5 allegro_image-5 allegro_primitives-5`
+g++ -Iinclude -o $1 $1.cpp include/AnimatedSprite.cpp include/ResourceManager.cpp include/Sprite.cpp include/BitmapResource.cpp `pkg-config --cflags --libs allegro-5 allegro_font-5 allegro_main-5 allegro_image-5 allegro_primitives-5`
 

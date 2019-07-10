@@ -10,7 +10,13 @@ ALLEGRO_BITMAP* Sprite::GetImage() {
     return bmp->GetBitmap();
 }
 bool Sprite::Draw() {
-    al_draw_bitmap(this->GetImage(), X, Y, 0);
+    ALLEGRO_BITMAP* image = this->GetImage();
+    if(image) {
+        al_draw_bitmap(image, X, Y, 0);
+    }
     return true;
     
+}
+void Sprite::Update() {
+
 }

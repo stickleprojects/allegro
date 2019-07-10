@@ -7,11 +7,13 @@
 class Sprite:public Entity {
     private:
         BitmapResource *bmp;
-        ALLEGRO_BITMAP* GetImage();
+    protected:
+        virtual ALLEGRO_BITMAP* GetImage();
 
     public:
         Sprite(BitmapResource *res);
-        bool Draw();
+        virtual void Update();
+        virtual bool Draw();
 };
 
 #endif
