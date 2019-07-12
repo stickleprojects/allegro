@@ -19,7 +19,8 @@ Sprite *player = NULL;
 
 void moveSprite(Sprite *sprite)
 {
-    sprite->X += 4;
+    sprite->X += 0;
+    
 }
 
 int init()
@@ -56,7 +57,7 @@ int init()
         return 1;
     }
 
-    //al_set_new_display_flags(ALLEGRO_FULLSCREEN);
+    // al_set_new_display_flags(ALLEGRO_FULLSCREEN);
 
     disp = al_create_display(SCREENW, SCREENH);
     if (!disp)
