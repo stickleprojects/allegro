@@ -10,6 +10,7 @@ bool AnimationFrame::IncrementFrameTime() {
     }
 }
 void AnimatedSprite::Update() {
+    printf("update %d/%d\n", currentFrame->FrameTime, currentFrame->FrameTimeMax);
     if(!currentFrame->IncrementFrameTime()) {
         NextFrame();
     }
@@ -37,7 +38,7 @@ AnimatedSprite::AnimatedSprite(ALLEGRO_BITMAP* images[], int numberOfFrames):Spr
         if(images[i]) {
             AnimationFrame* current = new AnimationFrame();
             current->bitmap = images[i];
-            current->FrameTimeMax=200;
+            current->FrameTimeMax=2;
             current->FrameTime=0;
 
             if(tail==NULL) {

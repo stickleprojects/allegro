@@ -12,10 +12,26 @@ ALLEGRO_DISPLAY *disp = NULL;
 ResourceManager *rm = NULL;
 Sprite *player = NULL;
 
-#define SCREENW 640
-#define SCREENH 480
+#define SCREENW 1024*2 // 640
+#define SCREENH 960*2 //480
+#define CAMERA_X 0
+#define CAMERA_Y 0
+#define CAMERA_SCALE 3.0f
 
 #define BACKGROUND_IMAGE "resources/background.png"
+struct POINT {
+    int x;
+    int y;
+
+    POINT(int theX, int theY) {
+        this->x = theX;
+        this->y = theY;
+    }
+};
+
+POINT cameraPosition= POINT(0,0);
+ALLEGRO_TRANSFORM camera;
+float cameraScale = CAMERA_SCALE;
 
 void moveSprite(Sprite *sprite)
 {
@@ -90,7 +106,14 @@ int initResources()
 
     return 0;
 }
+int cameraX = CAMERA_X;
+int cameraY = CAMERA_Y;
+bool updateCamera() {
+    if(cameraX<0) cameraX=0;
+    if (cameraY<0) cameraY=0;
 
+return true;
+}
 void DrawBackground()
 {
     static ALLEGRO_BITMAP *backgroundCachedImage = NULL;
@@ -129,6 +152,7 @@ void initSprites()
     printf("here\n");
 
     player = new AnimatedSprite(&cells[0], cells.size());
+    player->scale = CAMERA_SCALE;
 }
 int main()
 {
@@ -144,6 +168,7 @@ int main()
     }
 
     initSprites();
+
 
     bool redraw = true;
     ALLEGRO_EVENT event;
@@ -166,9 +191,19 @@ int main()
         {
 
             al_clear_to_color(al_map_rgb(0, 0, 0));
+
+            // create a 00 transform
+            al_identity_transform(&camera);
+            // move the cam
+            al_translate_transform (&camera,cameraPosition.x, cameraPosition.y);
+            al_scale_transform(&camera, cameraScale, cameraScale);
+
+            al_use_transform(&camera);
+
             DrawBackground();
 
             DrawSprites();
+
 
             al_flip_display();
 

@@ -9,8 +9,12 @@ class Sprite:public Entity {
         BitmapResource *bmp;
     protected:
         virtual ALLEGRO_BITMAP* GetImage();
+        int Width = 16;
+        int Height = 16;
 
     public:
+        float scale = 1.0f;
+        
         Sprite(BitmapResource *res);
         virtual void Update();
         virtual bool Draw();
