@@ -1,6 +1,8 @@
 #include "include/ResourceManager.h"
 #include "include/Sprite.h"
 #include "include/AnimatedSprite.h"
+#include "include/AnimationFrame.h"
+#include "include/SimpleAnimationFrame.h"
 #include <vector>
 #include <string>
 #define DEBUG 11
@@ -12,31 +14,32 @@ ALLEGRO_DISPLAY *disp = NULL;
 ResourceManager *rm = NULL;
 Sprite *player = NULL;
 
-#define SCREENW 1024*2 // 640
-#define SCREENH 960*2 //480
+#define SCREENW 1024 * 2 // 640
+#define SCREENH 960 * 2  //480
 #define CAMERA_X 0
 #define CAMERA_Y 0
 #define CAMERA_SCALE 3.0f
 
 #define BACKGROUND_IMAGE "resources/background.png"
-struct POINT {
+struct POINT
+{
     int x;
     int y;
 
-    POINT(int theX, int theY) {
+    POINT(int theX, int theY)
+    {
         this->x = theX;
         this->y = theY;
     }
 };
 
-POINT cameraPosition= POINT(0,0);
+POINT cameraPosition = POINT(0, 0);
 ALLEGRO_TRANSFORM camera;
 float cameraScale = CAMERA_SCALE;
 
 void moveSprite(Sprite *sprite)
 {
     sprite->X += 0;
-    
 }
 
 int init()
@@ -100,7 +103,6 @@ int initResources()
     rm = (ResourceManager *)new ResourceManager();
 
     rm->Add(BACKGROUND_IMAGE);
-    rm->Add("resources/mysha.png");
 
     printf("resources loaded\n");
 
@@ -108,11 +110,14 @@ int initResources()
 }
 int cameraX = CAMERA_X;
 int cameraY = CAMERA_Y;
-bool updateCamera() {
-    if(cameraX<0) cameraX=0;
-    if (cameraY<0) cameraY=0;
+bool updateCamera()
+{
+    if (cameraX < 0)
+        cameraX = 0;
+    if (cameraY < 0)
+        cameraY = 0;
 
-return true;
+    return true;
 }
 void DrawBackground()
 {
@@ -133,27 +138,63 @@ void DrawSprites()
 
     player->Draw();
 }
+AnimationFrame *first = NULL;
+
+void updateNextPointers(std::vector<AnimationFrame *> tgt)
+{
+    SimpleAnimationFrame *prev = NULL;
+    for (std::vector<AnimationFrame *>::iterator it = tgt.begin(); it != tgt.end(); ++it)
+    {
+        SimpleAnimationFrame *saf = dynamic_cast<SimpleAnimationFrame *>((*it));
+
+        if (saf)
+        {
+            if (prev)
+            {
+                prev->Next = saf;
+            }
+            prev = saf;
+        }
+    }
+}
 void initSprites()
 {
     //player = new Sprite(rm->Get("resources/mysha.png"));
-    std::vector<ALLEGRO_BITMAP *> cells;
+    std::vector<AnimationFrame *> cells;
+    rm->Add("resources/spritesheet1.png");
+    BitmapResource *spritesheet = rm->Get("resources/spritesheet1.png");
 
-    for (int i = 1; i <= 5; i++)
-    {
+    // create the various animation frames
+    // up
+    int x = 0, y = 0;
+    SimpleAnimationFrame *f = new SimpleAnimationFrame("first", spritesheet->GetBitmap(), Rect(x, y, 16, 16), 1);
 
-        std::string filepath = "resources/player" + std::to_string(i) + ".png";
-        printf("loading sprite image %s\n", filepath.c_str());
-        rm->Add(filepath.c_str());
-        BitmapResource *bmp = rm->Get(filepath.c_str());
+    cells.push_back(f);
+    cells.push_back(new SimpleAnimationFrame("2", spritesheet->GetBitmap(), Rect(x + 16, y, 16, 16), 1));
+    cells.push_back(new SimpleAnimationFrame("3",spritesheet->GetBitmap(), Rect(x + 32, y, 16, 16), 1));
 
-        cells.push_back(bmp->GetBitmap());
-    }
+    // // down
+    // y += 16;
+    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x, y, 16, 16), 1));
+    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x + 16, y, 16, 16), 1));
+    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x + 32, y, 16, 16), 1));
 
-    printf("here\n");
+    // // left
+    // y += 16;
+    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x, y, 16, 16), 1));
+    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x + 16, y, 16, 16), 1));
+    // //right
+    // y += 16;
+    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x, y, 16, 16), 1));
+    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x + 16, y, 16, 16), 1));
 
-    player = new AnimatedSprite(&cells[0], cells.size());
+    first = cells.front();
+    updateNextPointers(cells);
+
+    player = new AnimatedSprite(first);
     player->scale = CAMERA_SCALE;
 }
+
 int main()
 {
 
@@ -168,7 +209,6 @@ int main()
     }
 
     initSprites();
-
 
     bool redraw = true;
     ALLEGRO_EVENT event;
@@ -195,7 +235,7 @@ int main()
             // create a 00 transform
             al_identity_transform(&camera);
             // move the cam
-            al_translate_transform (&camera,cameraPosition.x, cameraPosition.y);
+            al_translate_transform(&camera, cameraPosition.x, cameraPosition.y);
             al_scale_transform(&camera, cameraScale, cameraScale);
 
             al_use_transform(&camera);
@@ -203,7 +243,6 @@ int main()
             DrawBackground();
 
             DrawSprites();
-
 
             al_flip_display();
 

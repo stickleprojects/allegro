@@ -24,17 +24,21 @@ public:
 class AnimationFrame
 {
 public:
-    ALLEGRO_BITMAP *bitmap;
-    int FrameTimeMax = 0;
-    int FrameTime = 0;
+    ALLEGRO_BITMAP *bitmap = NULL;
     Rect Region;
-    bool IncrementFrameTime();
+    std::string Id = NULL;
+    virtual bool Update() { return false; }
 
-    AnimationFrame *Next;
-    AnimationFrame()
+    AnimationFrame(std::string id)
     {
+        assert ( id.length() > 0);
+        this->Id = id;
+    };
+    AnimationFrame(std::string id, Rect region)
+    {
+        this->Id = id;
+        Region = region;
     }
 };
-
 
 #endif

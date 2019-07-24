@@ -1,7 +1,5 @@
 #include "ResourceManager.h"
 
-#define DEBUG 1
-
 ResourceManager::ResourceManager() {
     // ctor here 
 

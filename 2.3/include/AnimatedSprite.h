@@ -1,5 +1,5 @@
 #include "Sprite.h"
-#include "AnimationFrame.h"
+#include "SimpleAnimationFrame.h"
 
 #ifndef ANIMATEDSPRITE_H
 #define ANIMATEDSPRITE_H

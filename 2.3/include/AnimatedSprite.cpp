@@ -1,31 +1,42 @@
 #include "AnimatedSprite.h"
 
-bool AnimationFrame::IncrementFrameTime()
+void AnimatedSprite::NextFrame()
 {
-    FrameTime++;
-    if (FrameTime < FrameTimeMax)
+    SimpleAnimationFrame *saf = dynamic_cast<SimpleAnimationFrame *>(currentFrame);
+    if (saf != NULL)
     {
-        return true;
-    }
-    else
-    {
-        FrameTime = 0;
-        return false;
+        if (saf->Next)
+        {
+            currentFrame = saf->Next;
+        }
+        else
+        {
+            currentFrame = firstFrame;
+        }
     }
 }
 void AnimatedSprite::Update()
 {
-    printf("animationupdate %d/%d\n", currentFrame->FrameTime, currentFrame->FrameTimeMax);
-    if (!currentFrame->IncrementFrameTime())
+    bool result = currentFrame->Update();
+
+    if (!result)
     {
         NextFrame();
     }
+}
+
+void ASSERT_ISVALID (Rect r) {
+assert (r.width > 0 && r.height>0 && r.left >=0 && r.top>=0);
+
 }
 bool AnimatedSprite::Draw()
 {
     ALLEGRO_BITMAP *image = this->GetImage();
     if (image)
     {
+        ASSERT_ISVALID (currentFrame->Region);
+        debug_print("drawing image %s", currentFrame->Id.c_str());
+
         if (scale == 1.0f)
         {
             al_draw_bitmap_region(image, currentFrame->Region.left, currentFrame->Region.top, currentFrame->Region.width, currentFrame->Region.height, X, Y, 0);
@@ -51,13 +62,8 @@ void AnimatedSprite::ClearFrames()
 {
     if (framesOwnedByThis)
     {
-        for (AnimationFrame *frame = firstFrame; frame;)
-        {
-            AnimationFrame *n = frame->Next;
-            delete frame;
 
-            frame = n;
-        }
+        delete firstFrame;
     }
 
     currentFrame = NULL;
@@ -68,11 +74,12 @@ AnimatedSprite::~AnimatedSprite()
     ClearFrames();
 }
 
-AnimatedSprite::AnimatedSprite(AnimationFrame* first):Sprite(NULL) {
+AnimatedSprite::AnimatedSprite(AnimationFrame *first) : Sprite(NULL)
+{
     ClearFrames();
-    firstFrame=first;
-    framesOwnedByThis=false;
-    currentFrame=firstFrame;
+    firstFrame = first;
+    framesOwnedByThis = true;
+    currentFrame = firstFrame;
 }
 
 AnimatedSprite::AnimatedSprite(ALLEGRO_BITMAP *images[], int numberOfFrames) : Sprite(NULL)
@@ -80,39 +87,7 @@ AnimatedSprite::AnimatedSprite(ALLEGRO_BITMAP *images[], int numberOfFrames) : S
     ClearFrames();
     AnimationFrame *tail = NULL;
 
-    for (int i = 0; i < numberOfFrames; i++)
-    {
-        if (images[i])
-        {
-            AnimationFrame *current = new AnimationFrame();
-            current->bitmap = images[i];
-            current->FrameTimeMax = 2;
-            current->FrameTime = 0;
-            current->Region = Rect(0, 0, this->Width, this->Height);
-            if (tail == NULL)
-            {
-                firstFrame = current;
-            }
-            else
-            {
-                tail->Next = current;
-            }
-            tail = current;
+    firstFrame = new SimpleAnimationFrame("sa1", images, numberOfFrames, Rect(0, 0, this->Width, this->Height), 2);
 
-            printf("added animation frame %d\n", i);
-        }
-        else
-        {
-            printf("skipped missing image %d\n", i);
-        }
-    }
     currentFrame = firstFrame;
-}
-
-
-void AnimatedSprite::NextFrame()
-{
-    currentFrame = currentFrame->Next;
-    if (!currentFrame)
-        currentFrame = firstFrame;
 }
