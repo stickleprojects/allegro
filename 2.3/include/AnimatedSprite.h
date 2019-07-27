@@ -8,8 +8,8 @@
 class AnimatedSprite : public Sprite
 {
 private:
-    AnimationFrame *firstFrame;
-    AnimationFrame *currentFrame; // current frame
+    AnimationFrame *firstFrame = NULL;
+    AnimationFrame *currentFrame = NULL; // current frame
     bool framesOwnedByThis = true;
 
 protected:

@@ -18,7 +18,7 @@ bool SimpleAnimationFrame::IncrementFrameTime()
     }
 }
 SimpleAnimationFrame::SimpleAnimationFrame(std::string id, ALLEGRO_BITMAP *images[], int numberOfImages, Rect region, int frameTimeMax)
-:AnimationFrame(id)
+    : AnimationFrame(id)
 {
     SimpleAnimationFrame *tail = NULL, *current = this;
 
@@ -52,14 +52,12 @@ SimpleAnimationFrame::SimpleAnimationFrame(std::string id, ALLEGRO_BITMAP *image
 }
 
 SimpleAnimationFrame::SimpleAnimationFrame(std::string id, ALLEGRO_BITMAP *bmp, Rect region, int frameTimeMax)
-    : AnimationFrame(id)
+    : AnimationFrame(id, region)
 {
     this->bitmap = bmp;
     this->FrameTimeMax = frameTimeMax;
     this->FrameTime = 0;
     this->Next = NULL;
-    this->Id = id;
-    this->Region = region;
 }
 void SimpleAnimationFrame::DeleteNext()
 {

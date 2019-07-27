@@ -35,7 +35,7 @@ bool AnimatedSprite::Draw()
     if (image)
     {
         ASSERT_ISVALID (currentFrame->Region);
-        debug_print("drawing image %s", currentFrame->Id.c_str());
+        //debug_print("drawing image %s", currentFrame->Id.c_str());
 
         if (scale == 1.0f)
         {
@@ -60,7 +60,7 @@ ALLEGRO_BITMAP *AnimatedSprite::GetImage()
 
 void AnimatedSprite::ClearFrames()
 {
-    if (framesOwnedByThis)
+    if (framesOwnedByThis && firstFrame)
     {
 
         delete firstFrame;

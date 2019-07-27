@@ -5,7 +5,7 @@
 #include "include/SimpleAnimationFrame.h"
 #include <vector>
 #include <string>
-#define DEBUG 11
+
 
 ALLEGRO_FONT *font = NULL;
 ALLEGRO_TIMER *timer = NULL;
@@ -166,27 +166,12 @@ void initSprites()
 
     // create the various animation frames
     // up
-    int x = 0, y = 0;
-    SimpleAnimationFrame *f = new SimpleAnimationFrame("first", spritesheet->GetBitmap(), Rect(x, y, 16, 16), 1);
+    int x = 0, y = 0, cell_wait = 4;
+    SimpleAnimationFrame *f = new SimpleAnimationFrame("first", spritesheet->GetBitmap(), Rect(x, y, 16, 16), cell_wait);
 
     cells.push_back(f);
-    cells.push_back(new SimpleAnimationFrame("2", spritesheet->GetBitmap(), Rect(x + 16, y, 16, 16), 1));
-    cells.push_back(new SimpleAnimationFrame("3",spritesheet->GetBitmap(), Rect(x + 32, y, 16, 16), 1));
-
-    // // down
-    // y += 16;
-    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x, y, 16, 16), 1));
-    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x + 16, y, 16, 16), 1));
-    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x + 32, y, 16, 16), 1));
-
-    // // left
-    // y += 16;
-    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x, y, 16, 16), 1));
-    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x + 16, y, 16, 16), 1));
-    // //right
-    // y += 16;
-    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x, y, 16, 16), 1));
-    // cells.push_back(new SimpleAnimationFrame(spritesheet->GetBitmap(), Rect(x + 16, y, 16, 16), 1));
+    cells.push_back(new SimpleAnimationFrame("2", spritesheet->GetBitmap(), Rect(x + 16, y, 16, 16), cell_wait));
+    cells.push_back(new SimpleAnimationFrame("3",spritesheet->GetBitmap(), Rect(x + 32, y, 16, 16), cell_wait));
 
     first = cells.front();
     updateNextPointers(cells);

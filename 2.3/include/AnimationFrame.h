@@ -26,16 +26,18 @@ class AnimationFrame
 public:
     ALLEGRO_BITMAP *bitmap = NULL;
     Rect Region;
-    std::string Id = NULL;
+    std::string Id ;
     virtual bool Update() { return false; }
 
     AnimationFrame(std::string id)
     {
+        
         assert ( id.length() > 0);
         this->Id = id;
     };
     AnimationFrame(std::string id, Rect region)
     {
+        assert ( id.length() > 0);
         this->Id = id;
         Region = region;
     }

@@ -5,6 +5,7 @@
 #include <string>
 #include <iterator>
 #include "BitmapResource.h"
+#include "debug.h"
 
 #ifndef RESOURCEMANAGER_H
 #define RESOURCEMANAGER_H
