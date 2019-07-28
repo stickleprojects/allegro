@@ -188,6 +188,7 @@ int main()
             DrawBackground();
 
             DrawSprites();
+        
 
             al_flip_display();
 
