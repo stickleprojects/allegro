@@ -7,6 +7,9 @@
 *.o
 *.obj
 
+# build folders
+bin
+
 # Precompiled Headers
 *.gch
 *.pch
