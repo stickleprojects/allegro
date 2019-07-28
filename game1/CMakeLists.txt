@@ -45,6 +45,7 @@ set(${PROJECT_NAME}_SRCS src/main.cpp
             src/ResourceManager.cpp 
             src/Sprite.cpp 
             src/BitmapResource.cpp
+            src/Game.cpp
             )
 
 set(${PROJECT_NAME}_LINK_LIBS )
