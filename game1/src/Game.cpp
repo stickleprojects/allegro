@@ -121,27 +121,17 @@ void Game::initSprites()
 {
     //player = new Sprite(rm->Get("resources/mysha.png"));
     AnimationSetsDTO dto;
-std::string filepath = "resources/animationsetsdto.json";
+    std::string filepath = "resources/animationsetsdto.json";
 
     dto = rm->LoadJsonDto<AnimationSetsDTO>(filepath);
-    
-    std::vector<AnimationFrame *> cells;
+
     rm->Add("resources/spritesheet1.png");
     BitmapResource *spritesheet = rm->Get("resources/spritesheet1.png");
 
-    // create the various animation frames
-    // up
-    int x = 0, y = 0, cell_wait = 4;
-    SimpleAnimationFrame *f = new SimpleAnimationFrame("first", spritesheet->GetBitmap(), Rect(x, y, 16, 16), cell_wait);
+    auto factory = new AnimationSetFactory();
+    auto firstFrame = factory->create(spritesheet->GetBitmap(), dto.sets[0]);
 
-    cells.push_back(f);
-    cells.push_back(new SimpleAnimationFrame("2", spritesheet->GetBitmap(), Rect(x + 16, y, 16, 16), cell_wait));
-    cells.push_back(new SimpleAnimationFrame("3", spritesheet->GetBitmap(), Rect(x + 32, y, 16, 16), cell_wait));
-
-    first = cells.front();
-    updateNextPointers(cells);
-
-    player = new AnimatedSprite(first);
+    player = new AnimatedSprite(firstFrame);
     player->scale = CAMERA_SCALE;
 }
 
