@@ -14,7 +14,7 @@ int dogame() {
 int main()
 {
 
-//return dogame();
-   return test_animationsets_poco();
+return dogame();
+   //return test_animationsets_poco();
 
 }
