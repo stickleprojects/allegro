@@ -123,6 +123,33 @@ sprite-test/fast:
 	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/build
 .PHONY : sprite-test/fast
 
+persist/src/AnimationSetFactory.o: persist/src/AnimationSetFactory.cpp.o
+
+.PHONY : persist/src/AnimationSetFactory.o
+
+# target to build an object file
+persist/src/AnimationSetFactory.cpp.o:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/persist/src/AnimationSetFactory.cpp.o
+.PHONY : persist/src/AnimationSetFactory.cpp.o
+
+persist/src/AnimationSetFactory.i: persist/src/AnimationSetFactory.cpp.i
+
+.PHONY : persist/src/AnimationSetFactory.i
+
+# target to preprocess a source file
+persist/src/AnimationSetFactory.cpp.i:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/persist/src/AnimationSetFactory.cpp.i
+.PHONY : persist/src/AnimationSetFactory.cpp.i
+
+persist/src/AnimationSetFactory.s: persist/src/AnimationSetFactory.cpp.s
+
+.PHONY : persist/src/AnimationSetFactory.s
+
+# target to generate assembly for a file
+persist/src/AnimationSetFactory.cpp.s:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/persist/src/AnimationSetFactory.cpp.s
+.PHONY : persist/src/AnimationSetFactory.cpp.s
+
 src/AnimatedSprite.o: src/AnimatedSprite.cpp.o
 
 .PHONY : src/AnimatedSprite.o
@@ -176,6 +203,33 @@ src/BitmapResource.s: src/BitmapResource.cpp.s
 src/BitmapResource.cpp.s:
 	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/BitmapResource.cpp.s
 .PHONY : src/BitmapResource.cpp.s
+
+src/Game.o: src/Game.cpp.o
+
+.PHONY : src/Game.o
+
+# target to build an object file
+src/Game.cpp.o:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Game.cpp.o
+.PHONY : src/Game.cpp.o
+
+src/Game.i: src/Game.cpp.i
+
+.PHONY : src/Game.i
+
+# target to preprocess a source file
+src/Game.cpp.i:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Game.cpp.i
+.PHONY : src/Game.cpp.i
+
+src/Game.s: src/Game.cpp.s
+
+.PHONY : src/Game.s
+
+# target to generate assembly for a file
+src/Game.cpp.s:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Game.cpp.s
+.PHONY : src/Game.cpp.s
 
 src/ResourceManager.o: src/ResourceManager.cpp.o
 
@@ -294,12 +348,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... sprite-test"
 	@echo "... edit_cache"
+	@echo "... persist/src/AnimationSetFactory.o"
+	@echo "... persist/src/AnimationSetFactory.i"
+	@echo "... persist/src/AnimationSetFactory.s"
 	@echo "... src/AnimatedSprite.o"
 	@echo "... src/AnimatedSprite.i"
 	@echo "... src/AnimatedSprite.s"
 	@echo "... src/BitmapResource.o"
 	@echo "... src/BitmapResource.i"
 	@echo "... src/BitmapResource.s"
+	@echo "... src/Game.o"
+	@echo "... src/Game.i"
+	@echo "... src/Game.s"
 	@echo "... src/ResourceManager.o"
 	@echo "... src/ResourceManager.i"
 	@echo "... src/ResourceManager.s"

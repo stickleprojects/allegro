@@ -3,24 +3,6 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
-        {
-            "type": "shell",
-            "label": "build maine",
-            "command": "${workspaceFolder}/build.sh",
-            "args": [
-                "main",
-                
-            ],
-            "options": {
-                "cwd": "/usr/bin"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
+        
     ]
 }

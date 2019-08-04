@@ -36,15 +36,22 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 ## Configure the build system
 
 # Add the include folder to the include path
-include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(
+  ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/persist/include
+)
 
 # Set the source files, headers, and link libraries
-set(${PROJECT_NAME}_SRCS src/main.cpp 
+set(${PROJECT_NAME}_SRCS
+            src/main.cpp 
             src/SimpleAnimationFrame.cpp 
             src/AnimatedSprite.cpp 
             src/ResourceManager.cpp 
             src/Sprite.cpp 
             src/BitmapResource.cpp
+            src/Game.cpp
+
+            persist/src/AnimationSetFactory.cpp
             )
 
 set(${PROJECT_NAME}_LINK_LIBS )

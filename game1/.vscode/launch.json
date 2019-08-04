@@ -8,11 +8,14 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/main",
+            // Resolved by CMake Tools:
+            "program": "${command:cmake.launchTargetPath}",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
-            "environment": [],
+            "environment": [
+                
+            ],
             "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [
@@ -22,7 +25,7 @@
                     "ignoreFailures": true
                 }
             ]
-        },
+        }
    
     ]
 }
