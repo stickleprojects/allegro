@@ -17,6 +17,7 @@ struct Simple
 int test_animationsets_poco()
 {
 	AnimationSetsDTO dto;
+	printf("Testing animationSets\n");
 
 	std::ifstream is("resources//animationsetsdto.json");
 	if (rpoco::parse_json(is, dto))
@@ -32,7 +33,7 @@ int test_animationsets_poco()
 		{
 			if (c->Next)
 			{
-				printf("%s, %s\n", c->Id.c_str(), c->Next->Id.c_str());
+				printf("%s->%s\n", c->Id.c_str(), c->Next->Id.c_str());
 			}
 			else
 			{
@@ -42,6 +43,8 @@ int test_animationsets_poco()
 
 		delete factory;
 	}
+	printf("Complete\n");
+
 	return 0;
 }
 int test_animationframe_poco()
