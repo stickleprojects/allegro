@@ -1,49 +1,54 @@
 #include "ResourceManager.h"
 
-ResourceManager::ResourceManager() {
-    // ctor here 
-
+ResourceManager::ResourceManager()
+{
+    // ctor here
 }
 
-
-ResourceManager::~ResourceManager() {
+ResourceManager::~ResourceManager()
+{
     // destroy managed resources
     Clear();
 }
 
-ALLEGRO_BITMAP* ResourceManager::LoadBitmap(std::string relativePath) {
-    const char* filename = relativePath.c_str();
-    debug_print("loading bitmap #%d %s\n",bitmaps_loaded, filename);
+
+ALLEGRO_BITMAP *ResourceManager::LoadBitmap(std::string relativePath)
+{
+    const char *filename = relativePath.c_str();
+    debug_print("loading bitmap #%d %s\n", bitmaps_loaded, filename);
     bitmaps_loaded++;
-    ALLEGRO_BITMAP* ret = al_load_bitmap (filename);
-    
+    ALLEGRO_BITMAP *ret = al_load_bitmap(filename);
+
     return ret;
 }
-void ResourceManager::Delete(BitmapResource *bmr) {
+void ResourceManager::Delete(BitmapResource *bmr)
+{
     al_destroy_bitmap(bmr->GetBitmap());
     bitmaps_loaded--;
     debug_print("destroyed %s, bitmaps_remaining=%d\n", bmr->GetRelativePath().c_str(), bitmaps_loaded);
-    
 }
-void ResourceManager::Clear() {
+void ResourceManager::Clear()
+{
     // Iterate through all elements in std::map
-    std::map<std::string, BitmapResource*>::iterator it = resources.begin();
-    while(it != resources.end())
+    std::map<std::string, BitmapResource *>::iterator it = resources.begin();
+    while (it != resources.end())
     {
         Delete(it->second);
         it++;
     }
 }
-BitmapResource* ResourceManager::Add(std::string relativePath) {
+BitmapResource *ResourceManager::Add(std::string relativePath)
+{
     ALLEGRO_BITMAP *bitmap = LoadBitmap(relativePath);
 
-    BitmapResource* res =(BitmapResource*) new BitmapResource ( relativePath, bitmap);
+    BitmapResource *res = (BitmapResource *)new BitmapResource(relativePath, bitmap);
 
-    resources.insert (std::make_pair (relativePath, res));
+    resources.insert(std::make_pair(relativePath, res));
 
-return res;
+    return res;
 }
 
-BitmapResource* ResourceManager::Get(std::string relativePath) {
+BitmapResource *ResourceManager::Get(std::string relativePath)
+{
     return resources[relativePath];
 }

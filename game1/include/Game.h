@@ -20,6 +20,8 @@ struct POINT
 #include "SimpleAnimationFrame.h"
 #include <vector>
 #include <string>
+#include <dto.h>
+#include "AnimationSetFactory.h"
 
 #define SCREENW 1024 * 2 // 640
 #define SCREENH 960 * 2  //480

@@ -120,6 +120,11 @@ void Game::updateNextPointers(std::vector<AnimationFrame *> tgt)
 void Game::initSprites()
 {
     //player = new Sprite(rm->Get("resources/mysha.png"));
+    AnimationSetsDTO dto;
+std::string filepath = "resources/animationsetsdto.json";
+
+    dto = rm->LoadJsonDto<AnimationSetsDTO>(filepath);
+    
     std::vector<AnimationFrame *> cells;
     rm->Add("resources/spritesheet1.png");
     BitmapResource *spritesheet = rm->Get("resources/spritesheet1.png");
