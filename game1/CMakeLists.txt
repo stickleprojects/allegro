@@ -51,7 +51,7 @@ set(${PROJECT_NAME}_SRCS
             src/BitmapResource.cpp
             src/Game.cpp
 
-            persist/src
+            persist/src/AnimationSetFactory.cpp
             )
 
 set(${PROJECT_NAME}_LINK_LIBS )

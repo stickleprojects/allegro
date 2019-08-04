@@ -30,6 +30,7 @@ AnimationFrame* AnimationSetFactory::create(ALLEGRO_BITMAP* bmp, AnimationSetDTO
 			}
 		}
 	}
-	return NULL;
+
+	return createdFrames.begin()->second;
 
 }
