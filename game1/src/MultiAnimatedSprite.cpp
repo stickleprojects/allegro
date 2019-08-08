@@ -61,9 +61,12 @@ AnimationFrame *MultiAnimatedSprite::FindAnimationSetById(std::string id)
 }
 MultiAnimatedSprite::MultiAnimatedSprite(std::map<std::string, AnimationFrame *> frames, std::string defaultAnimationId) : AnimatedSprite(NULL)
 {
+playAnimations=false;
 
     this->frames = frames;
 
     firstFrame = FindAnimationSetById(defaultAnimationId);
     currentFrame = firstFrame;
+currentAnimationSetId = defaultAnimationId;
+    
 }

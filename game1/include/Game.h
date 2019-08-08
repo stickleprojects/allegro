@@ -73,6 +73,7 @@ private:
     ALLEGRO_TRANSFORM camera;
     float cameraScale = CAMERA_SCALE;
 
+    ConfigDTO config;
     int cameraX = CAMERA_X;
     int cameraY = CAMERA_Y;
     AnimationFrame *first = NULL;
@@ -82,11 +83,13 @@ private:
     GameStateEnum handleInput(GameStateEnum existingState);
 
     int initResources();
+    int initConfig();
     bool updateCamera();
     void drawBackground();
     void drawSprites();
     void updateNextPointers(std::vector<AnimationFrame *> tgt);
     void initSprites();
+    void initPlayer(std::string animationsFilepath);
 
 public:
     ~Game();
