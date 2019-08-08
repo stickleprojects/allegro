@@ -35,14 +35,14 @@ struct AnimationSetsDTO
 
 	RPOCO(sets, resource);
 
-	bool FindById(std::string id, AnimationSetDTO *dto) {
+	AnimationSetDTO* FindSetById(std::string id) {
 		for(auto i = sets.begin(); i!=sets.end(); ++i) {
 			if(i -> id == id) {
-				dto = &(*i);
-				return true;
+				return &(*i);
+				
 			}
 		}
-		return false;
+		return NULL;
 	}
 };
 
