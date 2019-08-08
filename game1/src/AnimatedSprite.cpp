@@ -73,7 +73,22 @@ AnimatedSprite::~AnimatedSprite()
 {
     ClearFrames();
 }
+AnimationFrame* MultiAnimatedSprite::FindAnimationSetById(std::string id) {
+    for(auto it=this->frames.begin(); it!=this->frames.end(); ++it) {
+        if(it->first == id) {
+            return (it->second);
+        }
+    }
+    return NULL;
+}
+MultiAnimatedSprite::MultiAnimatedSprite(std::map<std::string,AnimationFrame*> frames, std::string defaultAnimationId):AnimatedSprite(NULL) {
+    
+    this->frames = frames;
 
+    firstFrame=FindAnimationSetById(defaultAnimationId);
+    currentFrame=firstFrame;
+
+}
 AnimatedSprite::AnimatedSprite(AnimationFrame *first) : Sprite(NULL)
 {
     ClearFrames();

@@ -131,17 +131,16 @@ void Game::initSprites()
 
     auto factory = new AnimationSetFactory();
 
-auto animationSets = factory->create(spritesheet->GetBitmap(), dto);
+    auto animationSets = factory->create(spritesheet->GetBitmap(), dto);
 
-    auto *firstFrame = animationSets["right"];
-if (firstFrame == NULL)
-        {
-            SPDLOG_ERROR("Failed to find first frame for animation");
-            return;
-        }
-        player = new AnimatedSprite(firstFrame);
-        player->scale = CAMERA_SCALE;
+    auto defaultAnimation = dto.GetDefaultSet();
+    if(defaultAnimation==NULL) {
+        auto firstOne = dto.sets.begin();
+        defaultAnimation = &(*firstOne);
+    }
 
+    player = new MultiAnimatedSprite(animationSets,defaultAnimation->id);
+    player->scale = CAMERA_SCALE;
 }
 
 Game::~Game()
