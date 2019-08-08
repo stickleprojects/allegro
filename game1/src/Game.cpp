@@ -127,8 +127,8 @@ void Game::initSprites()
 
     dto = rm->LoadJsonDto<AnimationSetsDTO>(filepath);
 
-    rm->Add("resources/spritesheet1.png");
-    BitmapResource *spritesheet = rm->Get("resources/spritesheet1.png");
+    rm->Add(dto.resource);
+    BitmapResource *spritesheet = rm->Get(dto.resource);
 
     auto factory = new AnimationSetFactory();
     auto firstFrame = factory->create(spritesheet->GetBitmap(), dto.sets[0]);

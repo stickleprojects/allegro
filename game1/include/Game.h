@@ -1,17 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
 
-struct POINT
-{
-    int x;
-    int y;
-
-    POINT(int theX, int theY)
-    {
-        this->x = theX;
-        this->y = theY;
-    }
-};
 
 #include "spdlog.h"
 
@@ -33,6 +22,19 @@ struct POINT
 #define PLAYER_SPEED 5
 
 #define BACKGROUND_IMAGE "resources/background.png"
+
+
+struct POINT
+{
+    int x;
+    int y;
+
+    POINT(int theX, int theY)
+    {
+        this->x = theX;
+        this->y = theY;
+    }
+};
 
 enum GameStateEnum
 {

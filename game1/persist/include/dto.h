@@ -31,8 +31,9 @@ struct AnimationSetDTO
 struct AnimationSetsDTO
 {
 	std::vector<AnimationSetDTO> sets;
+	std::string resource;
 
-	RPOCO(sets);
+	RPOCO(sets, resource);
 };
 
 #endif
