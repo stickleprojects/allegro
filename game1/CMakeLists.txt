@@ -41,7 +41,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 include_directories(
   ${PROJECT_SOURCE_DIR}/include
   ${PROJECT_SOURCE_DIR}/persist/include
-${PROJECT_SOURCE_DIR}/external/spdlog/include
+  ${PROJECT_SOURCE_DIR}/external/spdlog/include/spdlog
   
 )
 

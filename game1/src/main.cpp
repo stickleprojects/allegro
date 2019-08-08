@@ -1,7 +1,4 @@
 #include "main.h"
-#include "rpoco_demo.h"
-#include <fstream>
-#include <map>
 
 
 

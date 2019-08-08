@@ -1,7 +1,6 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
 #include <string>
-#include "debug.h"
 
 #ifndef BITMAP_RESOURCE_H
 #define BITMAP_RESOURCE_H

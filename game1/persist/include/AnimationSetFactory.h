@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include <fstream>
+#include <spdlog.h>
 
 #ifndef PERSIST_H
 #define PERSIST_H

@@ -5,6 +5,7 @@ ResourceManager::ResourceManager()
     // ctor here
 }
 
+
 ResourceManager::~ResourceManager()
 {
     // destroy managed resources
@@ -15,7 +16,7 @@ ResourceManager::~ResourceManager()
 ALLEGRO_BITMAP *ResourceManager::LoadBitmap(std::string relativePath)
 {
     const char *filename = relativePath.c_str();
-    debug_print("loading bitmap #%d %s\n", bitmaps_loaded, filename);
+    SPDLOG_INFO("loading bitmap #{0:d} {1}", bitmaps_loaded, filename);
     bitmaps_loaded++;
     ALLEGRO_BITMAP *ret = al_load_bitmap(filename);
 
@@ -25,7 +26,7 @@ void ResourceManager::Delete(BitmapResource *bmr)
 {
     al_destroy_bitmap(bmr->GetBitmap());
     bitmaps_loaded--;
-    debug_print("destroyed %s, bitmaps_remaining=%d\n", bmr->GetRelativePath().c_str(), bitmaps_loaded);
+    SPDLOG_INFO("destroyed {0}, bitmaps_remaining={1:d}", bmr->GetRelativePath().c_str(), bitmaps_loaded);
 }
 void ResourceManager::Clear()
 {

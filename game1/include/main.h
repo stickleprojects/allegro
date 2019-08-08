@@ -1,10 +1,11 @@
-#include "Game.h"
 
 #ifndef MAIN_H
 #define MAIN_H
 
+#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_DEBUG
+#include "spdlog.h"
 
-#include "spdlog/spdlog.h"
+#include "Game.h"
 
 #define SCREENW 1024 * 2 // 640
 #define SCREENH 960 * 2  //480

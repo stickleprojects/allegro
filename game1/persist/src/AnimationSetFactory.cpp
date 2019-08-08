@@ -20,11 +20,11 @@ AnimationFrame *AnimationSetFactory::create(ALLEGRO_BITMAP *bmp, AnimationSetDTO
 	{
 		std::string nextId = it->next;
 
-		printf("Connecting %s=>%s...", it->id.c_str(), nextId.c_str());
+		SPDLOG_DEBUG("Connecting {0}=>{1}...", it->id.c_str(), nextId.c_str());
 
 		if (nextId.empty())
 		{
-			printf("skipped\n");
+			SPDLOG_DEBUG("skipped");
 		}
 		else
 		{
@@ -33,18 +33,18 @@ AnimationFrame *AnimationSetFactory::create(ALLEGRO_BITMAP *bmp, AnimationSetDTO
 
 			if (foundNext == createdFrames.end())
 			{
-				printf("Failed to find next\n");
+				SPDLOG_DEBUG("Failed to find next");
 			}
 			else
 			{
 				// found one!
 				if (foundCurrent == createdFrames.end())
 				{
-					printf("Failed to find current\n");
+					SPDLOG_DEBUG("Failed to find current");
 				}
 				else
 				{
-					printf("Ok\n");
+					SPDLOG_DEBUG("Ok");
 					foundCurrent->second->Next = foundNext->second;
 				}
 			}
