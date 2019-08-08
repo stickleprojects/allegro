@@ -1,4 +1,7 @@
 // https://github.com/whizzter/rpoco
+#ifndef RPOCODEMO_H
+#define RPOCODEMO_H
+
 #include "rpoco/json.hpp"
 #include <vector>
 #include <string>
@@ -77,3 +80,5 @@ int test_rpoco()
 
 	return 0;
 }
+
+#endif

@@ -31,6 +31,8 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 # set(CMAKE_BUILD_TYPE DEBUG)
 
 # Extend the find_package search path
+
+add_subdirectory(external/spdlog)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 ## Configure the build system
@@ -39,6 +41,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 include_directories(
   ${PROJECT_SOURCE_DIR}/include
   ${PROJECT_SOURCE_DIR}/persist/include
+${PROJECT_SOURCE_DIR}/external/spdlog/include
+  
 )
 
 # Set the source files, headers, and link libraries
@@ -62,6 +66,13 @@ set(${PROJECT_NAME}_LINK_LIBS )
 
 find_package(Allegro REQUIRED)
 
+if(NOT TARGET spdlog)
+
+    # Stand-alone build
+    find_package(spdlog REQUIRED)
+endif()
+
+
 #find_package(allegro 5.0 REQUIRED COMPONENTS
 #  main font ttf native_dialog primitives image
 #)
@@ -71,4 +82,9 @@ include_directories(
 
 # Compile the Library
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS})
-target_link_libraries(${PROJECT_NAME} ${ALLEGRO_LIBRARIES})
+# spdlog_enable_warnings(${PROJECT_NAME})
+target_link_libraries(${PROJECT_NAME} ${ALLEGRO_LIBRARIES} spdlog)
+
+
+# Create logs directory
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/logs")

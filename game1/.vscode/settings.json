@@ -1,6 +1,5 @@
 {
     "cmake.configureOnOpen": false,
-    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
     "files.associations": {
         "*.c": "c",
         "array": "cpp",
