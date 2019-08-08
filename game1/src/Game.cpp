@@ -121,12 +121,10 @@ void Game::updateNextPointers(std::vector<AnimationFrame *> tgt)
         }
     }
 }
-void Game::initSprites()
+void Game::initPlayer(std::string animationsFilepath)
 {
-
-    std::string filepath = "resources/animationsetsdto.json";
-
-    auto dto = rm->LoadJsonDto<AnimationSetsDTO>(filepath);
+    
+    auto dto = rm->LoadJsonDto<AnimationSetsDTO>(animationsFilepath);
 
     rm->Add(dto.resource);
     auto *spritesheet = rm->Get(dto.resource);
@@ -136,13 +134,21 @@ void Game::initSprites()
     auto animationSets = factory->create(spritesheet->GetBitmap(), dto);
 
     auto defaultAnimation = dto.GetDefaultSet();
-    if(defaultAnimation==NULL) {
+    if (defaultAnimation == NULL)
+    {
         auto firstOne = dto.sets.begin();
         defaultAnimation = &(*firstOne);
     }
 
-    player = new MultiAnimatedSprite(animationSets,defaultAnimation->id);
+    player = new MultiAnimatedSprite(animationSets, defaultAnimation->id);
     player->scale = CAMERA_SCALE;
+    player->X = config.playerstart.x;
+    player->Y = config.playerstart.y;
+}
+void Game::initSprites()
+{
+
+    initPlayer("resources/playeranimations.json");
 }
 
 Game::~Game()
@@ -203,6 +209,13 @@ GameStateEnum Game::handleInput(GameStateEnum existingState)
 
     return existingState;
 }
+int Game::initConfig()
+{
+
+    config = rm->LoadJsonDto<ConfigDTO>("resources/configdto.json");
+
+    return 0;
+}
 int Game::GameMain()
 {
     if (init() != 0)
@@ -210,6 +223,10 @@ int Game::GameMain()
         return 1;
     }
 
+    if (initConfig() != 0)
+    {
+        return 1;
+    }
     if (initResources() != 0)
     {
         return 2;

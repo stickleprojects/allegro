@@ -3,6 +3,7 @@
     "sets": [
         {
             "id": "down",
+            "isDefault": true,
             "frames": [
                 {
                     "id": "1",
@@ -97,7 +98,6 @@
         ,
         {
             "id": "left",
-            "isDefault":true,
             
             "frames": [
                 {
