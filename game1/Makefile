@@ -244,6 +244,33 @@ src/Game.cpp.s:
 	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Game.cpp.s
 .PHONY : src/Game.cpp.s
 
+src/MultiAnimatedSprite.o: src/MultiAnimatedSprite.cpp.o
+
+.PHONY : src/MultiAnimatedSprite.o
+
+# target to build an object file
+src/MultiAnimatedSprite.cpp.o:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/MultiAnimatedSprite.cpp.o
+.PHONY : src/MultiAnimatedSprite.cpp.o
+
+src/MultiAnimatedSprite.i: src/MultiAnimatedSprite.cpp.i
+
+.PHONY : src/MultiAnimatedSprite.i
+
+# target to preprocess a source file
+src/MultiAnimatedSprite.cpp.i:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/MultiAnimatedSprite.cpp.i
+.PHONY : src/MultiAnimatedSprite.cpp.i
+
+src/MultiAnimatedSprite.s: src/MultiAnimatedSprite.cpp.s
+
+.PHONY : src/MultiAnimatedSprite.s
+
+# target to generate assembly for a file
+src/MultiAnimatedSprite.cpp.s:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/MultiAnimatedSprite.cpp.s
+.PHONY : src/MultiAnimatedSprite.cpp.s
+
 src/ResourceManager.o: src/ResourceManager.cpp.o
 
 .PHONY : src/ResourceManager.o
@@ -374,6 +401,9 @@ help:
 	@echo "... src/Game.o"
 	@echo "... src/Game.i"
 	@echo "... src/Game.s"
+	@echo "... src/MultiAnimatedSprite.o"
+	@echo "... src/MultiAnimatedSprite.i"
+	@echo "... src/MultiAnimatedSprite.s"
 	@echo "... src/ResourceManager.o"
 	@echo "... src/ResourceManager.i"
 	@echo "... src/ResourceManager.s"

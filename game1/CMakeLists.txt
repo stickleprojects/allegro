@@ -54,7 +54,7 @@ set(${PROJECT_NAME}_SRCS
             src/Sprite.cpp 
             src/BitmapResource.cpp
             src/Game.cpp
-
+            src/MultiAnimatedSprite.cpp
             persist/src/AnimationSetFactory.cpp
             )
 

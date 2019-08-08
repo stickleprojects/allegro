@@ -3,6 +3,7 @@
 
 
 #include "spdlog.h"
+#include "MultiAnimatedSprite.h"
 
 #include "ResourceManager.h"
 #include "Sprite.h"
