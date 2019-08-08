@@ -14,6 +14,7 @@ class Sprite:public Entity {
 
     public:
         float scale = 1.0f;
+virtual void SetDirection(int x, int y);
         
         Sprite(BitmapResource *res);
         virtual void Update();

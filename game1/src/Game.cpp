@@ -4,6 +4,8 @@ void Game::moveSprite(Sprite *sprite)
 {
     sprite->X += PlayerMovement.X;
     sprite->Y += PlayerMovement.Y;
+    sprite->SetDirection(PlayerMovement.X, PlayerMovement.Y);
+
     PlayerMovement = VECTOR(0, 0);
 }
 
@@ -131,24 +133,16 @@ void Game::initSprites()
 
     auto factory = new AnimationSetFactory();
 
-    auto *animationSet = dto.FindSetById("right");
-    if (animationSet != NULL)
-    {
-        auto firstFrame = factory->create(spritesheet->GetBitmap(), *animationSet);
-        if (firstFrame == NULL)
-        {
-            SPDLOG_ERROR("Failed to find first frame for animation");
-            return;
-        }
-        player = new AnimatedSprite(firstFrame);
-        player->scale = CAMERA_SCALE;
-    }
-    else
-    {
+    auto animationSets = factory->create(spritesheet->GetBitmap(), dto);
 
-        SPDLOG_ERROR("Cannot find animation");
-        return;
+    auto defaultAnimation = dto.GetDefaultSet();
+    if(defaultAnimation==NULL) {
+        auto firstOne = dto.sets.begin();
+        defaultAnimation = &(*firstOne);
     }
+
+    player = new MultiAnimatedSprite(animationSets,defaultAnimation->id);
+    player->scale = CAMERA_SCALE;
 }
 
 Game::~Game()

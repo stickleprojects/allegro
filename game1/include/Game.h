@@ -3,6 +3,7 @@
 
 
 #include "spdlog.h"
+#include "MultiAnimatedSprite.h"
 
 #include "ResourceManager.h"
 #include "Sprite.h"
@@ -52,6 +53,7 @@ struct VECTOR
         X = x;
         Y = y;
     }
+   
 };
 
 class Game

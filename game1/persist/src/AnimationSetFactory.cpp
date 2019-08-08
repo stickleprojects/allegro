@@ -1,5 +1,24 @@
 #include "AnimationSetFactory.h"
 
+std::map<std::string, AnimationFrame *> AnimationSetFactory::create(ALLEGRO_BITMAP *bmp, AnimationSetsDTO dto)
+{
+
+	std::map<std::string, AnimationFrame *> ret;
+
+	for (auto it = dto.sets.begin(); it < dto.sets.end(); ++it)
+	{
+		auto *newFrame = this->create(bmp, *it);
+		if (newFrame == NULL)
+		{
+			SPDLOG_ERROR("Failed to create frameset {0}", it->id);
+			break;
+		}
+		ret.insert(std::make_pair( it->id, newFrame));
+	}
+
+	return ret;
+}
+
 AnimationFrame *AnimationSetFactory::create(ALLEGRO_BITMAP *bmp, AnimationSetDTO dto)
 {
 	std::map<std::string, SimpleAnimationFrame *> createdFrames;

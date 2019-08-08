@@ -73,7 +73,6 @@ AnimatedSprite::~AnimatedSprite()
 {
     ClearFrames();
 }
-
 AnimatedSprite::AnimatedSprite(AnimationFrame *first) : Sprite(NULL)
 {
     ClearFrames();

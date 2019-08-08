@@ -24,8 +24,9 @@ struct AnimationSetDTO
 {
 	std::string id;
 	std::vector<AnimationFrameDTO> frames;
-
-	RPOCO(id, frames);
+	bool isDefault=false;
+	
+	RPOCO(id, frames, isDefault);
 };
 
 struct AnimationSetsDTO
@@ -35,11 +36,24 @@ struct AnimationSetsDTO
 
 	RPOCO(sets, resource);
 
-	AnimationSetDTO* FindSetById(std::string id) {
-		for(auto i = sets.begin(); i!=sets.end(); ++i) {
-			if(i -> id == id) {
+	AnimationSetDTO *GetDefaultSet()
+	{
+		for (auto i = sets.begin(); i != sets.end(); ++i)
+		{
+			if (i->isDefault)
+			{
 				return &(*i);
-				
+			}
+		}
+		return NULL;
+	}
+	AnimationSetDTO *FindSetById(std::string id)
+	{
+		for (auto i = sets.begin(); i != sets.end(); ++i)
+		{
+			if (i->id == id)
+			{
+				return &(*i);
 			}
 		}
 		return NULL;
