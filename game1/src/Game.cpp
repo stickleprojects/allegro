@@ -131,24 +131,17 @@ void Game::initSprites()
 
     auto factory = new AnimationSetFactory();
 
-    auto *animationSet = dto.FindSetById("right");
-    if (animationSet != NULL)
-    {
-        auto firstFrame = factory->create(spritesheet->GetBitmap(), *animationSet);
-        if (firstFrame == NULL)
+auto animationSets = factory->create(spritesheet->GetBitmap(), dto);
+
+    auto *firstFrame = animationSets["right"];
+if (firstFrame == NULL)
         {
             SPDLOG_ERROR("Failed to find first frame for animation");
             return;
         }
         player = new AnimatedSprite(firstFrame);
         player->scale = CAMERA_SCALE;
-    }
-    else
-    {
 
-        SPDLOG_ERROR("Cannot find animation");
-        return;
-    }
 }
 
 Game::~Game()

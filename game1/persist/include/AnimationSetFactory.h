@@ -14,6 +14,8 @@ class AnimationSetFactory
 {
 public:
 	AnimationFrame *create(ALLEGRO_BITMAP* bmp, AnimationSetDTO dto);
+	std::map<std::string, AnimationFrame*> create(ALLEGRO_BITMAP* bmp, AnimationSetsDTO dto);
+
 };
 
 
