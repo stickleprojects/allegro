@@ -2,7 +2,9 @@
 
 void Game::moveSprite(Sprite *sprite)
 {
-    sprite->X += 0;
+    sprite->X += PlayerMovement.X;
+    sprite->Y += PlayerMovement.Y;
+    PlayerMovement = VECTOR(0, 0);
 }
 
 int Game::init()
@@ -165,6 +167,34 @@ Game::~Game()
     }
 }
 
+GameStateEnum Game::handleInput(GameStateEnum existingState)
+{
+    ALLEGRO_KEYBOARD_STATE keyboardState;
+    al_get_keyboard_state(&keyboardState);
+
+    if (al_key_down(&keyboardState, ALLEGRO_KEY_RIGHT))
+    {
+        PlayerMovement = VECTOR(PLAYER_SPEED, 0);
+    }
+    if (al_key_down(&keyboardState, ALLEGRO_KEY_LEFT))
+    {
+        PlayerMovement = VECTOR(-1 * PLAYER_SPEED, 0);
+    }
+    if (al_key_down(&keyboardState, ALLEGRO_KEY_UP))
+    {
+        PlayerMovement = VECTOR(0, -1 * PLAYER_SPEED);
+    }
+    if (al_key_down(&keyboardState, ALLEGRO_KEY_DOWN))
+    {
+        PlayerMovement = VECTOR(0, PLAYER_SPEED);
+    }
+    if (al_key_down(&keyboardState, ALLEGRO_KEY_ESCAPE))
+    {
+        return GameStateEnum::Quit;
+    }
+
+    return existingState;
+}
 int Game::GameMain()
 {
     if (init() != 0)
@@ -184,8 +214,10 @@ int Game::GameMain()
 
     al_start_timer(timer);
 
-    while (1)
+    while (GameState == GameStateEnum::Playing)
     {
+        GameState = handleInput(GameState);
+
         al_wait_for_event(queue, &event);
 
         if (event.type == ALLEGRO_EVENT_TIMER)
@@ -193,8 +225,14 @@ int Game::GameMain()
             redraw = true;
             moveSprite(player);
         }
-        else if ((event.type == ALLEGRO_EVENT_KEY_DOWN) || (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE))
+
+        else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+        {
+            SPDLOG_DEBUG(event);
+            GameState = GameStateEnum::Quit;
+
             break;
+        }
 
         if (redraw && al_is_event_queue_empty(queue))
         {

@@ -30,12 +30,34 @@ struct POINT
 #define CAMERA_X 0
 #define CAMERA_Y 0
 #define CAMERA_SCALE 3.0f
+#define PLAYER_SPEED 5
 
 #define BACKGROUND_IMAGE "resources/background.png"
+
+enum GameStateEnum
+{
+    Playing,
+    Quit
+};
+
+struct VECTOR
+{
+    int X = 0;
+    int Y = 0;
+
+    VECTOR(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+};
 
 class Game
 {
 private:
+    GameStateEnum GameState = GameStateEnum::Playing;
+    VECTOR PlayerMovement = VECTOR(0, 0);
+
     ALLEGRO_FONT *font = NULL;
     ALLEGRO_TIMER *timer = NULL;
     ALLEGRO_EVENT_QUEUE *queue = NULL;
@@ -53,6 +75,7 @@ private:
 
     void moveSprite(Sprite *sprite);
     int init();
+    GameStateEnum handleInput(GameStateEnum existingState);
 
     int initResources();
     bool updateCamera();
@@ -61,9 +84,8 @@ private:
     void updateNextPointers(std::vector<AnimationFrame *> tgt);
     void initSprites();
 
-    
 public:
-~Game();
+    ~Game();
     int GameMain();
 };
 
