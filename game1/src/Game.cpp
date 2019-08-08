@@ -4,6 +4,8 @@ void Game::moveSprite(Sprite *sprite)
 {
     sprite->X += PlayerMovement.X;
     sprite->Y += PlayerMovement.Y;
+    sprite->SetDirection(PlayerMovement.X, PlayerMovement.Y);
+
     PlayerMovement = VECTOR(0, 0);
 }
 

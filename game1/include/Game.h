@@ -52,6 +52,7 @@ struct VECTOR
         X = x;
         Y = y;
     }
+   
 };
 
 class Game

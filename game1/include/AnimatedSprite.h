@@ -34,6 +34,8 @@ private:
 AnimationFrame* FindAnimationSetById(std::string id);
 public:
     MultiAnimatedSprite(std::map<std::string,AnimationFrame*> frames, std::string defaultAnimationId);
+    void SetDirection(int x, int y) ;
+
 };
 
 #endif

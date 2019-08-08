@@ -6,6 +6,9 @@ Sprite::Sprite(BitmapResource *resource) {
     Y=0;
 }
 
+void Sprite::SetDirection(int x, int y) {
+    // do nowt    
+}
 ALLEGRO_BITMAP* Sprite::GetImage() {
     return bmp->GetBitmap();
 }
