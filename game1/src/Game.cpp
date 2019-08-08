@@ -105,9 +105,9 @@ void Game::drawSprites()
 void Game::updateNextPointers(std::vector<AnimationFrame *> tgt)
 {
     SimpleAnimationFrame *prev = NULL;
-    for (std::vector<AnimationFrame *>::iterator it = tgt.begin(); it != tgt.end(); ++it)
+    for (auto it = tgt.begin(); it != tgt.end(); ++it)
     {
-        SimpleAnimationFrame *saf = dynamic_cast<SimpleAnimationFrame *>((*it));
+        auto *saf = dynamic_cast<SimpleAnimationFrame *>((*it));
 
         if (saf)
         {
@@ -121,20 +121,30 @@ void Game::updateNextPointers(std::vector<AnimationFrame *> tgt)
 }
 void Game::initSprites()
 {
-    //player = new Sprite(rm->Get("resources/mysha.png"));
-    AnimationSetsDTO dto;
+
     std::string filepath = "resources/animationsetsdto.json";
 
-    dto = rm->LoadJsonDto<AnimationSetsDTO>(filepath);
+    auto dto = rm->LoadJsonDto<AnimationSetsDTO>(filepath);
 
     rm->Add(dto.resource);
-    BitmapResource *spritesheet = rm->Get(dto.resource);
+    auto *spritesheet = rm->Get(dto.resource);
 
     auto factory = new AnimationSetFactory();
-    auto firstFrame = factory->create(spritesheet->GetBitmap(), dto.sets[0]);
 
-    player = new AnimatedSprite(firstFrame);
-    player->scale = CAMERA_SCALE;
+    AnimationSetDTO animationSet;
+    if (dto.FindById("right", &animationSet))
+    {
+        auto firstFrame = factory->create(spritesheet->GetBitmap(), animationSet);
+
+        player = new AnimatedSprite(firstFrame);
+        player->scale = CAMERA_SCALE;
+    }
+    else
+    {
+        
+        SPDLOG_ERROR("Cannot find animation");
+        return;
+    }
 }
 
 Game::~Game()
