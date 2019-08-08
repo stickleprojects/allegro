@@ -13,6 +13,8 @@ struct POINT
     }
 };
 
+#include "spdlog.h"
+
 #include "ResourceManager.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"

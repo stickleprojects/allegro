@@ -9,33 +9,33 @@ int Game::init()
 {
     if (!al_init())
     {
-        printf("couldn't initialize allegro\n");
+        SPDLOG_ERROR("couldn't initialize allegro\n");
         return 1;
     }
 
     if (!al_init_image_addon())
     {
-        printf("couldn't initialize image addon\n");
+        SPDLOG_ERROR("couldn't initialize image addon\n");
         return 1;
     }
 
     if (!al_install_keyboard())
     {
-        printf("couldn't initialize keyboard\n");
+        SPDLOG_ERROR("couldn't initialize keyboard\n");
         return 1;
     }
 
     timer = al_create_timer(1.0 / 30.0);
     if (!timer)
     {
-        printf("couldn't initialize timer\n");
+        SPDLOG_ERROR("couldn't initialize timer\n");
         return 1;
     }
 
     queue = al_create_event_queue();
     if (!queue)
     {
-        printf("couldn't initialize queue\n");
+        SPDLOG_ERROR("couldn't initialize queue\n");
         return 1;
     }
 
@@ -44,14 +44,14 @@ int Game::init()
     disp = al_create_display(SCREENW, SCREENH);
     if (!disp)
     {
-        printf("couldn't initialize display\n");
+        SPDLOG_ERROR("couldn't initialize display");
         return 1;
     }
 
     font = al_create_builtin_font();
     if (!font)
     {
-        printf("couldn't initialize font\n");
+        SPDLOG_ERROR("couldn't initialize font");
         return 1;
     }
 
@@ -67,7 +67,7 @@ int Game::initResources()
 
     rm->Add(BACKGROUND_IMAGE);
 
-    printf("resources loaded\n");
+    SPDLOG_INFO("resources loaded\n");
 
     return 0;
 }
@@ -86,7 +86,7 @@ void Game::drawBackground()
 
     if (backgroundCachedImage == NULL)
     {
-        printf("caching background image\n");
+        SPDLOG_INFO("caching background image");
         BitmapResource *res = rm->Get(BACKGROUND_IMAGE);
         backgroundCachedImage = res->GetBitmap();
     }
@@ -137,7 +137,7 @@ void Game::initSprites()
 
 Game::~Game()
 {
-    printf("Destroying game\n");
+    SPDLOG_DEBUG("Destroying game");
     if (font)
     {
         al_destroy_font(font);

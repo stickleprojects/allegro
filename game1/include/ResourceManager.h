@@ -5,9 +5,10 @@
 #include <string>
 #include <iterator>
 #include "BitmapResource.h"
-#include "debug.h"
 #include <dto.h>
 #include <rpoco/json.hpp>
+
+#include "spdlog.h"
 
 #ifndef RESOURCEMANAGER_H
 #define RESOURCEMANAGER_H
@@ -34,16 +35,16 @@ public:
     T LoadJsonDto(std::string filepath)
     {
         T dto;
-        printf("Reading Json\n");
+        SPDLOG_INFO("Reading JsonDTO: {0}", filepath);
 
         std::ifstream is(filepath.c_str());
         if (rpoco::parse_json(is, dto))
         {
-            printf("Read Ok\n %s\n", rpoco::to_json(dto).c_str());
+            SPDLOG_INFO("JsonDTO Read Ok\n {0}", rpoco::to_json(dto).c_str());
         }
 
         return dto;
-    }
+    };
 };
 
 #endif

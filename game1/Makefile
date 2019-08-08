@@ -123,6 +123,19 @@ sprite-test/fast:
 	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/build
 .PHONY : sprite-test/fast
 
+#=============================================================================
+# Target rules for targets named spdlog
+
+# Build rule for target.
+spdlog: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 spdlog
+.PHONY : spdlog
+
+# fast build rule for target.
+spdlog/fast:
+	$(MAKE) -f external/spdlog/CMakeFiles/spdlog.dir/build.make external/spdlog/CMakeFiles/spdlog.dir/build
+.PHONY : spdlog/fast
+
 persist/src/AnimationSetFactory.o: persist/src/AnimationSetFactory.cpp.o
 
 .PHONY : persist/src/AnimationSetFactory.o
@@ -348,6 +361,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... sprite-test"
 	@echo "... edit_cache"
+	@echo "... spdlog"
 	@echo "... persist/src/AnimationSetFactory.o"
 	@echo "... persist/src/AnimationSetFactory.i"
 	@echo "... persist/src/AnimationSetFactory.s"
