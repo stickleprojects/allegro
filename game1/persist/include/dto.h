@@ -31,8 +31,19 @@ struct AnimationSetDTO
 struct AnimationSetsDTO
 {
 	std::vector<AnimationSetDTO> sets;
+	std::string resource;
 
-	RPOCO(sets);
+	RPOCO(sets, resource);
+
+	AnimationSetDTO* FindSetById(std::string id) {
+		for(auto i = sets.begin(); i!=sets.end(); ++i) {
+			if(i -> id == id) {
+				return &(*i);
+				
+			}
+		}
+		return NULL;
+	}
 };
 
 #endif
