@@ -15,6 +15,4 @@
 
 #define BACKGROUND_IMAGE "resources/background.png"
 
-#include "rpoco_demo.h"
-
 #endif
