@@ -18,6 +18,8 @@ void MultiAnimatedSprite::resetCurrentFrame()
 }
 void MultiAnimatedSprite::SetDirection(int x, int y)
 {
+    SPDLOG_DEBUG("setting direction");
+    
     if (x > 0)
     {
         currentFrame = FindAnimationSetById("right");

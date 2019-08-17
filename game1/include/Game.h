@@ -1,7 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
 
-
 #include "spdlog.h"
 #include "MultiAnimatedSprite.h"
 
@@ -19,11 +18,10 @@
 #define SCREENH 960 * 2  //480
 #define CAMERA_X 0
 #define CAMERA_Y 0
-#define CAMERA_SCALE 3.0f
+#define CAMERA_SCALE 2.0f
 #define PLAYER_SPEED 5
 
 #define BACKGROUND_IMAGE "resources/background.png"
-
 
 struct POINT
 {
@@ -53,7 +51,6 @@ struct VECTOR
         X = x;
         Y = y;
     }
-   
 };
 
 class Game
@@ -90,6 +87,7 @@ private:
     void updateNextPointers(std::vector<AnimationFrame *> tgt);
     void initSprites();
     void initPlayer(std::string animationsFilepath);
+    void drawHud();
 
 public:
     ~Game();

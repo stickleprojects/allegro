@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "StringFormat.h"
 
 void Game::moveSprite(Sprite *sprite)
 {
@@ -6,6 +7,7 @@ void Game::moveSprite(Sprite *sprite)
     sprite->Y += PlayerMovement.Y;
     sprite->SetDirection(PlayerMovement.X, PlayerMovement.Y);
 
+    SPDLOG_DEBUG("moved player {0},{1}", sprite->X, sprite->Y);
     PlayerMovement = VECTOR(0, 0);
 }
 
@@ -96,9 +98,15 @@ void Game::drawBackground()
     }
     al_draw_bitmap(backgroundCachedImage, 0, 0, 1);
 }
+void Game::drawHud()
+{
+
+    auto s = stringFormat("Player (%d,%d)", player->X, player->Y);
+    al_draw_text(font, al_map_rgb(255, 255, 255), 0, 0, ALLEGRO_ALIGN_LEFT, s.c_str());
+}
 void Game::drawSprites()
 {
-    al_draw_text(font, al_map_rgb(255, 255, 255), 100, 10, ALLEGRO_ALIGN_RIGHT, "Hello world!");
+    drawHud();
     player->Update();
 
     player->Draw();
@@ -123,7 +131,7 @@ void Game::updateNextPointers(std::vector<AnimationFrame *> tgt)
 }
 void Game::initPlayer(std::string animationsFilepath)
 {
-    
+
     auto dto = rm->LoadJsonDto<AnimationSetsDTO>(animationsFilepath);
 
     rm->Add(dto.resource);

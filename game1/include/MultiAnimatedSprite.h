@@ -2,6 +2,7 @@
 #define MULTIANIMATEDSPRITE_H
 
 #include "AnimatedSprite.h"
+#include <spdlog.h>
 #include <map>
 
 class MultiAnimatedSprite : public AnimatedSprite
