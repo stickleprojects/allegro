@@ -101,7 +101,7 @@ void Game::drawBackground()
 void Game::drawHud()
 {
 
-    auto s = stringFormat("Player (%d,%d)", player->X, player->Y);
+    auto s = stringFormat("FPS %d Player (%d,%d)", (int)FPS, player->X, player->Y);
     al_draw_text(font, al_map_rgb(255, 255, 255), 0, 0, ALLEGRO_ALIGN_LEFT, s.c_str());
 }
 void Game::drawSprites()
@@ -224,6 +224,15 @@ int Game::initConfig()
 
     return 0;
 }
+void Game::updateFPS()
+{
+
+    double new_time = al_get_time();
+    double delta = new_time - old_time;
+    FPS = 1 / delta;
+    old_time = new_time;
+}
+
 int Game::GameMain()
 {
     if (init() != 0)
@@ -247,8 +256,12 @@ int Game::GameMain()
 
     al_start_timer(timer);
 
+    double old_time = al_get_time();
+
     while (GameState == GameStateEnum::Playing)
     {
+        updateFPS();
+
         GameState = handleInput(GameState);
 
         al_wait_for_event(queue, &event);

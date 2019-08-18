@@ -59,6 +59,10 @@ private:
     GameStateEnum GameState = GameStateEnum::Playing;
     VECTOR PlayerMovement = VECTOR(0, 0);
 
+    double FPS = 0;
+    double old_time;
+    void updateFPS();
+    
     ALLEGRO_FONT *font = NULL;
     ALLEGRO_TIMER *timer = NULL;
     ALLEGRO_EVENT_QUEUE *queue = NULL;
