@@ -14,6 +14,7 @@ private:
 public:
 	AnimationSet(std::map<std::string, AnimationFrame *> frames);
 	std::map<std::string, AnimationFrame *> GetFrames();
+	AnimationFrame *FindFirstFrameById(std::string id);
 };
 
 #endif
