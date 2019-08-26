@@ -11,7 +11,6 @@ class MultiAnimatedSprite : public AnimatedSprite
 {
 private:
     AnimationSet *animationSet;
-    std::map<std::string, AnimationFrame *> frames;
     AnimationFrame *FindAnimationSetById(std::string id);
     std::string currentAnimationSetId;
     bool playAnimations = false;
