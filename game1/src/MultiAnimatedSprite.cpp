@@ -52,6 +52,8 @@ void MultiAnimatedSprite::SetDirection(int x, int y)
 
 AnimationFrame *MultiAnimatedSprite::FindAnimationSetById(std::string id)
 {
+    return this->animationSet->FindFirstFrameById(id);
+
     for (auto it = this->frames.begin(); it != this->frames.end(); ++it)
     {
         if (it->first == id)
@@ -66,6 +68,7 @@ MultiAnimatedSprite::MultiAnimatedSprite(AnimationSet* animationSet, std::string
     playAnimations = false;
 
     this->frames = animationSet->GetFrames();
+this->animationSet = animationSet;
 
     firstFrame = FindAnimationSetById(defaultAnimationId);
     currentFrame = firstFrame;
