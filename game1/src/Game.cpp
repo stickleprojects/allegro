@@ -139,7 +139,7 @@ void Game::initPlayer(std::string animationsFilepath)
 
     auto factory = new AnimationSetFactory();
 
-    auto animationSets = factory->create(spritesheet->GetBitmap(), dto);
+    auto animationSet = factory->create(spritesheet->GetBitmap(), dto);
 
     auto defaultAnimation = dto.GetDefaultSet();
     if (defaultAnimation == NULL)
@@ -148,7 +148,7 @@ void Game::initPlayer(std::string animationsFilepath)
         defaultAnimation = &(*firstOne);
     }
 
-    player = new MultiAnimatedSprite(animationSets, defaultAnimation->id);
+    player = new MultiAnimatedSprite(animationSet, defaultAnimation->id);
     player->scale = CAMERA_SCALE;
     player->X = config.playerstart.x;
     player->Y = config.playerstart.y;

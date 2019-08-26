@@ -190,6 +190,33 @@ src/AnimatedSprite.cpp.s:
 	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/AnimatedSprite.cpp.s
 .PHONY : src/AnimatedSprite.cpp.s
 
+src/AnimationSet.o: src/AnimationSet.cpp.o
+
+.PHONY : src/AnimationSet.o
+
+# target to build an object file
+src/AnimationSet.cpp.o:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/AnimationSet.cpp.o
+.PHONY : src/AnimationSet.cpp.o
+
+src/AnimationSet.i: src/AnimationSet.cpp.i
+
+.PHONY : src/AnimationSet.i
+
+# target to preprocess a source file
+src/AnimationSet.cpp.i:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/AnimationSet.cpp.i
+.PHONY : src/AnimationSet.cpp.i
+
+src/AnimationSet.s: src/AnimationSet.cpp.s
+
+.PHONY : src/AnimationSet.s
+
+# target to generate assembly for a file
+src/AnimationSet.cpp.s:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/AnimationSet.cpp.s
+.PHONY : src/AnimationSet.cpp.s
+
 src/BitmapResource.o: src/BitmapResource.cpp.o
 
 .PHONY : src/BitmapResource.o
@@ -395,6 +422,9 @@ help:
 	@echo "... src/AnimatedSprite.o"
 	@echo "... src/AnimatedSprite.i"
 	@echo "... src/AnimatedSprite.s"
+	@echo "... src/AnimationSet.o"
+	@echo "... src/AnimationSet.i"
+	@echo "... src/AnimationSet.s"
 	@echo "... src/BitmapResource.o"
 	@echo "... src/BitmapResource.i"
 	@echo "... src/BitmapResource.s"

@@ -1,3 +1,7 @@
+
+#ifndef PERSIST_H
+#define PERSIST_H
+
 #include "SimpleAnimationFrame.h"
 #include "dto.h"
 #include <vector>
@@ -6,17 +10,17 @@
 #include <fstream>
 #include <spdlog.h>
 
-#ifndef PERSIST_H
-#define PERSIST_H
+#include <AnimationSet.h>
 
-
+/**
+ * @brief Creates lists of animations keyed by id
+ * 
+ */
 class AnimationSetFactory
 {
 public:
-	AnimationFrame *create(ALLEGRO_BITMAP* bmp, AnimationSetDTO dto);
-	std::map<std::string, AnimationFrame*> create(ALLEGRO_BITMAP* bmp, AnimationSetsDTO dto);
-
+	AnimationFrame *create(ALLEGRO_BITMAP *bmp, AnimationSetDTO dto);
+	AnimationSet *create(ALLEGRO_BITMAP *bmp, AnimationSetsDTO dto);
 };
-
 
 #endif

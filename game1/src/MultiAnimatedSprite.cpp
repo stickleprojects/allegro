@@ -19,7 +19,7 @@ void MultiAnimatedSprite::resetCurrentFrame()
 void MultiAnimatedSprite::SetDirection(int x, int y)
 {
     SPDLOG_DEBUG("setting direction");
-    
+
     if (x > 0)
     {
         currentFrame = FindAnimationSetById("right");
@@ -61,14 +61,13 @@ AnimationFrame *MultiAnimatedSprite::FindAnimationSetById(std::string id)
     }
     return NULL;
 }
-MultiAnimatedSprite::MultiAnimatedSprite(std::map<std::string, AnimationFrame *> frames, std::string defaultAnimationId) : AnimatedSprite(NULL)
+MultiAnimatedSprite::MultiAnimatedSprite(AnimationSet* animationSet, std::string defaultAnimationId) : AnimatedSprite(NULL)
 {
-playAnimations=false;
+    playAnimations = false;
 
-    this->frames = frames;
+    this->frames = animationSet->GetFrames();
 
     firstFrame = FindAnimationSetById(defaultAnimationId);
     currentFrame = firstFrame;
-currentAnimationSetId = defaultAnimationId;
-    
+    currentAnimationSetId = defaultAnimationId;
 }
