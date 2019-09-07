@@ -7,13 +7,20 @@
 
 #include <map>
 
+class AnimatedSpriteWithSet: public Sprite {
+protected: 
+AnimationSet *animationSet = NULL;
+public     :
+AnimatedSpriteWithSet (AnimationSet* animationSet);
+
+};
+
 class AnimatedSprite : public Sprite
 {
 private:
     bool framesOwnedByThis = true;
 
 protected:
-    AnimationSet *animationSet = NULL;
     AnimationFrame *firstFrame = NULL;
     AnimationFrame *currentFrame = NULL; // current frame
 
