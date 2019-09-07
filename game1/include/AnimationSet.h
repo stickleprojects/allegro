@@ -6,6 +6,10 @@
 #include <AnimationFrame.h>
 #include <string>
 
+/**
+ * @brief Holds a collection of animation frames keyed on an id (ie. UP, DOWN, RIGHT)
+ * 
+ */
 class AnimationSet
 {
 private:

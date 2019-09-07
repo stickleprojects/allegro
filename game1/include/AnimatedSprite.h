@@ -1,5 +1,6 @@
 #include "Sprite.h"
 #include "SimpleAnimationFrame.h"
+#include "AnimationSet.h"
 
 #ifndef ANIMATEDSPRITE_H
 #define ANIMATEDSPRITE_H
@@ -12,9 +13,10 @@ private:
     bool framesOwnedByThis = true;
 
 protected:
+    AnimationSet *animationSet = NULL;
     AnimationFrame *firstFrame = NULL;
     AnimationFrame *currentFrame = NULL; // current frame
-    
+
     ALLEGRO_BITMAP *GetImage() override;
     void NextFrame();
     void ClearFrames();
@@ -27,6 +29,5 @@ public:
     void Update() override;
     bool Draw() override;
 };
-
 
 #endif
