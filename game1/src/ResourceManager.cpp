@@ -5,13 +5,11 @@ ResourceManager::ResourceManager()
     // ctor here
 }
 
-
 ResourceManager::~ResourceManager()
 {
     // destroy managed resources
     Clear();
 }
-
 
 ALLEGRO_BITMAP *ResourceManager::LoadBitmap(std::string relativePath)
 {
@@ -40,10 +38,10 @@ void ResourceManager::Clear()
 }
 BitmapResource *ResourceManager::Add(std::string relativePath)
 {
+
     ALLEGRO_BITMAP *bitmap = LoadBitmap(relativePath);
 
     BitmapResource *res = (BitmapResource *)new BitmapResource(relativePath, bitmap);
-
     resources.insert(std::make_pair(relativePath, res));
 
     return res;

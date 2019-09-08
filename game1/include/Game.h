@@ -62,14 +62,15 @@ private:
     double FPS = 0;
     double old_time;
     void updateFPS();
-    
+
     ALLEGRO_FONT *font = NULL;
     ALLEGRO_TIMER *timer = NULL;
     ALLEGRO_EVENT_QUEUE *queue = NULL;
     ALLEGRO_DISPLAY *disp = NULL;
     ResourceManager *rm = NULL;
     Sprite *player = NULL;
-std::vector<Sprite*> npcs ;
+    std::vector<Sprite *> npcs;
+    Sprite *CreateNPC(std::string animationsFilePath,int startX, int startY, int directionX);
 
     POINT cameraPosition = POINT(0, 0);
     ALLEGRO_TRANSFORM camera;
@@ -83,7 +84,7 @@ std::vector<Sprite*> npcs ;
     void moveSprite(Sprite *sprite);
     int init();
     GameStateEnum handleInput(GameStateEnum existingState);
-void initNPCs();
+    void initNPCs();
 
     int initResources();
     int initConfig();
