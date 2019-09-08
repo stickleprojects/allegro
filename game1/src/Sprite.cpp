@@ -27,3 +27,9 @@ bool Sprite::Draw() {
 void Sprite::Update() {
     this->X += 1;
 }
+
+void Sprite::SetDimensions (int w, int h) {
+this->Width = w;
+this->Height = h;
+
+}

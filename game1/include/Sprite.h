@@ -19,6 +19,8 @@ virtual void SetDirection(int x, int y);
         Sprite(BitmapResource *res);
         virtual void Update();
         virtual bool Draw();
+
+        void SetDimensions (int w, int h);
 };
 
 #endif

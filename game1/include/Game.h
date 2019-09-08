@@ -69,6 +69,7 @@ private:
     ALLEGRO_DISPLAY *disp = NULL;
     ResourceManager *rm = NULL;
     Sprite *player = NULL;
+std::vector<Sprite*> npcs ;
 
     POINT cameraPosition = POINT(0, 0);
     ALLEGRO_TRANSFORM camera;
@@ -82,6 +83,7 @@ private:
     void moveSprite(Sprite *sprite);
     int init();
     GameStateEnum handleInput(GameStateEnum existingState);
+void initNPCs();
 
     int initResources();
     int initConfig();

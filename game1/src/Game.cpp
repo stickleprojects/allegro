@@ -110,6 +110,11 @@ void Game::drawSprites()
     player->Update();
 
     player->Draw();
+
+    for(auto nps : npcs) {
+        nps->Update();
+        nps->Draw();
+    }
 }
 
 void Game::updateNextPointers(std::vector<AnimationFrame *> tgt)
@@ -153,9 +158,38 @@ void Game::initPlayer(std::string animationsFilepath)
     player->X = config.playerstart.x;
     player->Y = config.playerstart.y;
 }
+void Game::initNPCs() {
+    std::string animationsFilepath = "resources/np1animations.json";
+     auto dto = rm->LoadJsonDto<AnimationSetsDTO>(animationsFilepath);
+
+    rm->Add(dto.resource);
+    auto *spritesheet = rm->Get(dto.resource);
+
+    auto factory = new AnimationSetFactory();
+
+    auto animationSet = factory->create(spritesheet->GetBitmap(), dto);
+
+    auto defaultAnimation = dto.GetDefaultSet();
+    if (defaultAnimation == NULL)
+    {
+        auto firstOne = dto.sets.begin();
+        defaultAnimation = &(*firstOne);
+    }
+
+
+    auto npc = new MultiAnimatedSprite(animationSet, defaultAnimation->id);
+    npc->scale = CAMERA_SCALE;
+    npc->X = 10;
+    npc->Y = 250;
+    auto firstFrame =defaultAnimation->frames.begin();
+npc->SetDimensions (firstFrame->rect.w, firstFrame->rect.h );
+
+    npcs.push_back(npc);
+
+}
 void Game::initSprites()
 {
-
+initNPCs();
     initPlayer("resources/playeranimations.json");
 }
 

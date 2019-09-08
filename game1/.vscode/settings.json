@@ -46,6 +46,8 @@
         "tuple": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "utility": "cpp"
-    }
+        "utility": "cpp",
+        "memory_resource": "cpp"
+    },
+    "C_Cpp.configurationWarnings": "Disabled"
 }
