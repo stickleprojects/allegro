@@ -14,8 +14,8 @@
 #include <dto.h>
 #include <AnimationSetFactory.h>
 
-#define SCREENW 1024 * 2 // 640
-#define SCREENH 960 * 2  //480
+#define SCREENW 1024 * 1 // 640
+#define SCREENH 960 * 1  //480
 #define CAMERA_X 0
 #define CAMERA_Y 0
 #define CAMERA_SCALE 2.0f

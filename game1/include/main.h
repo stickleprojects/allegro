@@ -7,8 +7,6 @@
 
 #include "Game.h"
 
-#define SCREENW 1024 * 2 // 640
-#define SCREENH 960 * 2  //480
 #define CAMERA_X 0
 #define CAMERA_Y 0
 
