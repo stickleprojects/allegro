@@ -12,6 +12,11 @@ AnimationFrame *AnimationSet::FindFirstFrameById(std::string id) {
     return NULL;
 }
 
+void AnimationSet::Update()
+{
+// do nowt
+}
+
 AnimationSet::AnimationSet(std::map<std::string, AnimationFrame *> frames)
 {
 	this->frames = frames;

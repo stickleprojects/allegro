@@ -190,6 +190,33 @@ src/AnimatedSprite.cpp.s:
 	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/AnimatedSprite.cpp.s
 .PHONY : src/AnimatedSprite.cpp.s
 
+src/AnimatedSpriteWithSet.o: src/AnimatedSpriteWithSet.cpp.o
+
+.PHONY : src/AnimatedSpriteWithSet.o
+
+# target to build an object file
+src/AnimatedSpriteWithSet.cpp.o:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/AnimatedSpriteWithSet.cpp.o
+.PHONY : src/AnimatedSpriteWithSet.cpp.o
+
+src/AnimatedSpriteWithSet.i: src/AnimatedSpriteWithSet.cpp.i
+
+.PHONY : src/AnimatedSpriteWithSet.i
+
+# target to preprocess a source file
+src/AnimatedSpriteWithSet.cpp.i:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/AnimatedSpriteWithSet.cpp.i
+.PHONY : src/AnimatedSpriteWithSet.cpp.i
+
+src/AnimatedSpriteWithSet.s: src/AnimatedSpriteWithSet.cpp.s
+
+.PHONY : src/AnimatedSpriteWithSet.s
+
+# target to generate assembly for a file
+src/AnimatedSpriteWithSet.cpp.s:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/AnimatedSpriteWithSet.cpp.s
+.PHONY : src/AnimatedSpriteWithSet.cpp.s
+
 src/AnimationSet.o: src/AnimationSet.cpp.o
 
 .PHONY : src/AnimationSet.o
@@ -422,6 +449,9 @@ help:
 	@echo "... src/AnimatedSprite.o"
 	@echo "... src/AnimatedSprite.i"
 	@echo "... src/AnimatedSprite.s"
+	@echo "... src/AnimatedSpriteWithSet.o"
+	@echo "... src/AnimatedSpriteWithSet.i"
+	@echo "... src/AnimatedSpriteWithSet.s"
 	@echo "... src/AnimationSet.o"
 	@echo "... src/AnimationSet.i"
 	@echo "... src/AnimationSet.s"
