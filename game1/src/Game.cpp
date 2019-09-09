@@ -188,6 +188,8 @@ Sprite *Game::CreateNPC(std::string animationsFilepath, int startX, int startY, 
     npc->Y = startY;
 
     npc->SetDirection(directionX, 0);
+
+    // set dims from teh first frame
     auto firstFrame = defaultAnimation->frames.begin();
     npc->SetDimensions(firstFrame->rect.w, firstFrame->rect.h);
 
@@ -201,11 +203,11 @@ void Game::initNPCs()
     int gap = 43;
 
     npcs.push_back(CreateNPC(animationsFilepath, 0, y, 1));
-    y+=gap;
-    
+    y += gap;
+
     npcs.push_back(CreateNPC(animationsFilepath, 400, y, -1));
-    y+=gap;
-    
+    y += gap;
+
     npcs.push_back(CreateNPC(animationsFilepath, 0, y, 1));
 }
 void Game::initSprites()
