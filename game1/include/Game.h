@@ -13,6 +13,7 @@
 #include <string>
 #include <dto.h>
 #include <AnimationSetFactory.h>
+#include <VectorFuncs.h>
 
 #define SCREENW 1024 * 1 // 640
 #define SCREENH 960 * 1  //480
@@ -58,7 +59,7 @@ class Game
 private:
     GameStateEnum GameState = GameStateEnum::Playing;
     VECTOR PlayerMovement = VECTOR(0, 0);
-
+    
     double FPS = 0;
     double old_time;
     void updateFPS();
@@ -70,12 +71,15 @@ private:
     ResourceManager *rm = NULL;
     Sprite *player = NULL;
     std::vector<Sprite *> npcs;
-    Sprite *CreateNPC(std::string animationsFilePath,int startX, int startY, int directionX);
+    Sprite *CreateNPC(std::string animationsFilePath, int startX, int startY, int directionX);
 
     POINT cameraPosition = POINT(0, 0);
     ALLEGRO_TRANSFORM camera;
     float cameraScale = CAMERA_SCALE;
-
+    bool isOffScreen(Sprite *sprite);
+    void updateNPCs();
+    Sprite* CreateNPC(int x, int y, int directionX);
+    Sprite* CreateLawnmowerNPC(int y);
     ConfigDTO config;
     int cameraX = CAMERA_X;
     int cameraY = CAMERA_Y;

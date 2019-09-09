@@ -112,14 +112,21 @@ void Game::drawHud()
 void Game::drawSprites()
 {
     drawHud();
-    player->Update();
-
-    player->Draw();
-
-    for (auto nps : npcs)
+    try
     {
-        nps->Update();
-        nps->Draw();
+        player->Update();
+
+        player->Draw();
+
+        for (auto nps : npcs)
+        {
+
+            nps->Draw();
+        }
+    }
+    catch (std::runtime_error &e)
+    {
+        SPDLOG_ERROR("Error during draw %s", e.what());
     }
 }
 
@@ -195,20 +202,37 @@ Sprite *Game::CreateNPC(std::string animationsFilepath, int startX, int startY, 
 
     return npc;
 }
+Sprite *Game::CreateNPC(int x, int y, int directionX)
+{
+    std::string animationsFilepath = "resources/np1animations.json";
+
+    return CreateNPC(animationsFilepath, x, y, directionX);
+}
+Sprite *Game::CreateLawnmowerNPC(int y)
+{
+    int x = SCREENW / 2;
+    int directionX = -1;
+    if (y == 320 || y == (320 + (43 * 2)))
+    {
+        x = 0;
+        directionX = 1;
+    }
+
+    return CreateNPC(x, y, directionX);
+}
 void Game::initNPCs()
 {
 
-    std::string animationsFilepath = "resources/np1animations.json";
     int y = 320;
     int gap = 43;
 
-    npcs.push_back(CreateNPC(animationsFilepath, 0, y, 1));
-    y += gap;
+    npcs.push_back(CreateNPC(0, y, 1));
 
-    npcs.push_back(CreateNPC(animationsFilepath, 400, y, -1));
     y += gap;
+    npcs.push_back(CreateNPC(40, y, -1));
 
-    npcs.push_back(CreateNPC(animationsFilepath, 0, y, 1));
+    y += gap;
+    npcs.push_back(CreateNPC(0, y, 1));
 }
 void Game::initSprites()
 {
@@ -291,7 +315,30 @@ void Game::updateFPS()
     FPS = 1 / delta;
     old_time = new_time;
 }
+bool Game::isOffScreen(Sprite *sprite)
+{
+    return (sprite->X + sprite->Width < 0) || (sprite->X > (SCREENW / 2));
+}
+void Game::updateNPCs()
+{
 
+    for (auto nps : npcs)
+    {
+        nps->Update();
+
+        // kill any offscreen
+        if (isOffScreen(nps))
+        {
+            auto ypos = nps->Y;
+
+            DeleteFromVector(npcs, nps);
+            auto tmp = CreateLawnmowerNPC(ypos);
+            SPDLOG_DEBUG("created npc at %d", y);
+
+            npcs.push_back(tmp);
+        }
+    }
+}
 int Game::GameMain()
 {
     if (init() != 0)
@@ -329,6 +376,7 @@ int Game::GameMain()
         {
             redraw = true;
             moveSprite(player);
+            updateNPCs();
         }
 
         else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)

@@ -26,11 +26,13 @@ ALLEGRO_BITMAP* Sprite::GetImage() {
 bool Sprite::Draw() {
     ALLEGRO_BITMAP* image = this->GetImage();
     if(image) {
+        
         if(scale==1.0f) {
             al_draw_bitmap(image, X, Y, 0);
         } else {
             al_draw_scaled_bitmap (image, 0,0 , this->Width, this->Height, X, Y, this->Width*this->scale, this->Height*this->scale, 0  );
-        }
+        } 
+       
     }
     return true;
     
