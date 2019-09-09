@@ -13,12 +13,16 @@ class Sprite:public Entity {
         int Height = 16;
 
     public:
+    int x_direction, y_direction;
+    
         float scale = 1.0f;
 virtual void SetDirection(int x, int y);
         
         Sprite(BitmapResource *res);
         virtual void Update();
         virtual bool Draw();
+virtual void Move();
+        void SetDimensions (int w, int h);
 };
 
 #endif

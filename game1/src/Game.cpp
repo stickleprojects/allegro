@@ -9,6 +9,11 @@ void Game::moveSprite(Sprite *sprite)
 
     SPDLOG_DEBUG("moved player {0},{1}", sprite->X, sprite->Y);
     PlayerMovement = VECTOR(0, 0);
+
+    for (auto npc : npcs)
+    {
+        npc->Move();
+    }
 }
 
 int Game::init()
@@ -110,6 +115,12 @@ void Game::drawSprites()
     player->Update();
 
     player->Draw();
+
+    for (auto nps : npcs)
+    {
+        nps->Update();
+        nps->Draw();
+    }
 }
 
 void Game::updateNextPointers(std::vector<AnimationFrame *> tgt)
@@ -153,15 +164,63 @@ void Game::initPlayer(std::string animationsFilepath)
     player->X = config.playerstart.x;
     player->Y = config.playerstart.y;
 }
-void Game::initSprites()
+Sprite *Game::CreateNPC(std::string animationsFilepath, int startX, int startY, int directionX)
+{
+    auto dto = rm->LoadJsonDto<AnimationSetsDTO>(animationsFilepath);
+
+    rm->Add(dto.resource);
+    auto *spritesheet = rm->Get(dto.resource);
+
+    auto factory = new AnimationSetFactory();
+
+    auto animationSet = factory->create(spritesheet->GetBitmap(), dto);
+
+    auto defaultAnimation = dto.GetDefaultSet();
+    if (defaultAnimation == NULL)
+    {
+        auto firstOne = dto.sets.begin();
+        defaultAnimation = &(*firstOne);
+    }
+
+    auto npc = new MultiAnimatedSprite(animationSet, defaultAnimation->id);
+    npc->scale = CAMERA_SCALE;
+    npc->X = startX;
+    npc->Y = startY;
+
+    npc->SetDirection(directionX, 0);
+
+    // set dims from teh first frame
+    auto firstFrame = defaultAnimation->frames.begin();
+    npc->SetDimensions(firstFrame->rect.w, firstFrame->rect.h);
+
+    return npc;
+}
+void Game::initNPCs()
 {
 
+    std::string animationsFilepath = "resources/np1animations.json";
+    int y = 320;
+    int gap = 43;
+
+    npcs.push_back(CreateNPC(animationsFilepath, 0, y, 1));
+    y += gap;
+
+    npcs.push_back(CreateNPC(animationsFilepath, 400, y, -1));
+    y += gap;
+
+    npcs.push_back(CreateNPC(animationsFilepath, 0, y, 1));
+}
+void Game::initSprites()
+{
+    initNPCs();
     initPlayer("resources/playeranimations.json");
 }
 
 Game::~Game()
 {
     SPDLOG_DEBUG("Destroying game");
+    npcs.clear();
+
     if (font)
     {
         al_destroy_font(font);

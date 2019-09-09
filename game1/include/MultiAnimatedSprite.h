@@ -7,6 +7,7 @@
 #include <spdlog.h>
 #include <map>
 
+
 class MultiAnimatedSprite : public AnimatedSprite
 {
 private:

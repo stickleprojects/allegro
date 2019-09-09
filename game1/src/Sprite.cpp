@@ -6,8 +6,19 @@ Sprite::Sprite(BitmapResource *resource) {
     Y=0;
 }
 
+void Sprite::Move() {
+    if(x_direction!=0) {
+        X+= x_direction;
+    }
+    if(y_direction!=0) {
+        Y += y_direction;
+    }
+}
 void Sprite::SetDirection(int x, int y) {
-    // do nowt    
+    // do nowt
+    x_direction = x;
+    y_direction = y;
+
 }
 ALLEGRO_BITMAP* Sprite::GetImage() {
     return bmp->GetBitmap();
@@ -26,4 +37,10 @@ bool Sprite::Draw() {
 }
 void Sprite::Update() {
     this->X += 1;
+}
+
+void Sprite::SetDimensions (int w, int h) {
+this->Width = w;
+this->Height = h;
+
 }

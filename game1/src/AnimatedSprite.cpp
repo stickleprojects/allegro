@@ -11,6 +11,7 @@ void AnimatedSprite::NextFrame()
         }
         else
         {
+            // firstframe should be reset when changing animationid
             currentFrame = firstFrame;
         }
     }
@@ -25,16 +26,16 @@ void AnimatedSprite::Update()
     }
 }
 
-void ASSERT_ISVALID (Rect r) {
-assert (r.width > 0 && r.height>0 && r.left >=0 && r.top>=0);
-
+void ASSERT_ISVALID(Rect r)
+{
+    assert(r.width > 0 && r.height > 0 && r.left >= 0 && r.top >= 0);
 }
 bool AnimatedSprite::Draw()
 {
     ALLEGRO_BITMAP *image = this->GetImage();
     if (image)
     {
-        ASSERT_ISVALID (currentFrame->Region);
+        ASSERT_ISVALID(currentFrame->Region);
         //debug_print("drawing image %s", currentFrame->Id.c_str());
 
         if (scale == 1.0f)
