@@ -1,10 +1,11 @@
-#ifndef VECTORFUNCS_H
-#define VECTORFUNCS_H
+#include <vector>
 
-template<typename T>
-void DeleteFromVector(std::vector<T>& vector, T const& value)
-{
+#ifndef VECTORFUNCS_H_
+#define VECTORFUNCS_H_
+
+template <typename T>
+void DeleteFromVector(const std::vector<T>& vector, T const& value) {
     vector.erase(std::remove(begin(vector), end(vector), value), end(vector));
 }
 
-#endif
+#endif  // VECTORFUNCS_H_

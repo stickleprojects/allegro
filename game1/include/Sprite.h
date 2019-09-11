@@ -1,18 +1,17 @@
 #include "BitmapResource.h"
 #include "Entity.h"
 
-#ifndef SPRITE_H
-#define SPRITE_H
+#ifndef SPRITE_H_
+#define SPRITE_H_
 
-class Sprite : public Entity
-{
-private:
+class Sprite : public Entity {
+   private:
     BitmapResource *bmp;
 
-protected:
+   protected:
     virtual ALLEGRO_BITMAP *GetImage();
 
-public:
+   public:
     int Width = 16;
     int Height = 16;
     int x_direction, y_direction;
@@ -20,11 +19,11 @@ public:
     float scale = 1.0f;
     virtual void SetDirection(int x, int y);
 
-    Sprite(BitmapResource *res);
+    explicit Sprite(BitmapResource *res);
     virtual void Update();
     virtual bool Draw();
     virtual void Move();
     void SetDimensions(int w, int h);
 };
 
-#endif
+#endif  // SPRITE_H_

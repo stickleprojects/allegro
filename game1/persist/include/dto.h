@@ -1,77 +1,67 @@
+#include <vector>
+#include <string>
 #include "rpoco/json.hpp"
 
-#ifndef DTO
-#define DTO
-
+#ifndef PERSIST_INCLUDE_DTO_H_
+#define PERSIST_INCLUDE_DTO_H_
 
 struct PointDTO {
-	int x = 0, y = 0;
+    int x = 0, y = 0;
 
-	RPOCO(x,y);
+    RPOCO(x, y);
 };
 
 struct ConfigDTO {
-	PointDTO playerstart;
+    PointDTO playerstart;
 
-	RPOCO (playerstart);
-	
+    RPOCO(playerstart);
 };
 
-struct RectDTO
-{
-	int x = 0, y = 0, w = 0, h = 0;
+struct RectDTO {
+    int x = 0, y = 0, w = 0, h = 0;
 
-	RPOCO(x, y, w, h);
+    RPOCO(x, y, w, h);
 };
 
-struct AnimationFrameDTO
-{
-	std::string id;
-	RectDTO rect;
-	std::string next;
-	int frametimemax = 2;
+struct AnimationFrameDTO {
+    std::string id;
+    RectDTO rect;
+    std::string next;
+    int frametimemax = 2;
 
-	RPOCO(id, rect, next, frametimemax);
+    RPOCO(id, rect, next, frametimemax);
 };
 
-struct AnimationSetDTO
-{
-	std::string id;
-	std::vector<AnimationFrameDTO> frames;
-	bool isDefault=false;
-	
-	RPOCO(id, frames, isDefault);
+struct AnimationSetDTO {
+    std::string id;
+    std::vector<AnimationFrameDTO> frames;
+    bool isDefault = false;
+
+    RPOCO(id, frames, isDefault);
 };
 
-struct AnimationSetsDTO
-{
-	std::vector<AnimationSetDTO> sets;
-	std::string resource;
+struct AnimationSetsDTO {
+    std::vector<AnimationSetDTO> sets;
+    std::string resource;
 
-	RPOCO(sets, resource);
+    RPOCO(sets, resource);
 
-	AnimationSetDTO *GetDefaultSet()
-	{
-		for (auto i = sets.begin(); i != sets.end(); ++i)
-		{
-			if (i->isDefault)
-			{
-				return &(*i);
-			}
-		}
-		return NULL;
-	}
-	AnimationSetDTO *FindSetById(std::string id)
-	{
-		for (auto i = sets.begin(); i != sets.end(); ++i)
-		{
-			if (i->id == id)
-			{
-				return &(*i);
-			}
-		}
-		return NULL;
-	}
+    AnimationSetDTO *GetDefaultSet() {
+        for (auto i = sets.begin(); i != sets.end(); ++i) {
+            if (i->isDefault) {
+                return &(*i);
+            }
+        }
+        return NULL;
+    }
+    AnimationSetDTO *FindSetById(std::string id) {
+        for (auto i = sets.begin(); i != sets.end(); ++i) {
+            if (i->id == id) {
+                return &(*i);
+            }
+        }
+        return NULL;
+    }
 };
 
-#endif
+#endif  // PERSIST_INCLUDE_DTO_H_

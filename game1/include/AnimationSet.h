@@ -1,24 +1,23 @@
 
-#ifndef ANIMATIONSET_H
-#define ANIMATIONSET_H
+#ifndef ANIMATIONSET_H_
+#define ANIMATIONSET_H_
 
-#include <map>
 #include <AnimationFrame.h>
+#include <map>
 #include <string>
 
 /**
  * @brief Holds a collection of animation frames keyed on an id (ie. UP, DOWN, RIGHT)
  * 
  */
-class AnimationSet
-{
-private:
-	std::map<std::string, AnimationFrame *> frames;
+class AnimationSet {
+   private:
+    std::map<std::string, AnimationFrame *> frames;
 
-public:
-	AnimationSet(std::map<std::string, AnimationFrame *> frames);
-	std::map<std::string, AnimationFrame *> GetFrames();
-	AnimationFrame *FindFirstFrameById(std::string id);
+   public:
+    explicit AnimationSet(std::map<std::string, AnimationFrame *> frames);
+    std::map<std::string, AnimationFrame *> GetFrames();
+    AnimationFrame *FindFirstFrameById(std::string id);
 };
 
-#endif
+#endif  // ANIMATIONSET_H_

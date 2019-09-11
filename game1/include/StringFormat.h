@@ -1,9 +1,11 @@
+#include <cstdarg>
 #include <string>
 #include <vector>
-#include <cstdarg>
 
-const std::string stringFormat(const char * const zcFormat, ...) {
+#ifndef STRINGFORMAT_H_
+#define STRINGFORMAT_H_
 
+const std::string stringFormat(const char* const zcFormat, ...) {
     // initialize use of the variable argument array
     va_list vaArgs;
     va_start(vaArgs, zcFormat);
@@ -21,7 +23,7 @@ const std::string stringFormat(const char * const zcFormat, ...) {
     std::vector<char> zc(iLen + 1);
     std::vsnprintf(zc.data(), zc.size(), zcFormat, vaArgs);
     va_end(vaArgs);
-    return std::string(zc.data(), iLen); 
-    };
+    return std::string(zc.data(), iLen);
+}
 
-    
+#endif  // STRINGFORMAT_H_

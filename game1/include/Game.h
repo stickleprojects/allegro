@@ -1,22 +1,24 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef GAME_H_
+#define GAME_H_
 
-#include "spdlog.h"
+#include <string>
+#include <vector>
+
 #include "MultiAnimatedSprite.h"
+#include "spdlog.h"
 
-#include "ResourceManager.h"
-#include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "AnimationFrame.h"
+#include "ResourceManager.h"
 #include "SimpleAnimationFrame.h"
-#include <vector>
-#include <string>
-#include <dto.h>
-#include <AnimationSetFactory.h>
-#include <VectorFuncs.h>
+#include "Sprite.h"
 
-#define SCREENW 1024 * 1 // 640
-#define SCREENH 960 * 1  //480
+#include "AnimationSetFactory.h"
+#include "VectorFuncs.h"
+#include "dto.h"
+
+#define SCREENW 1024 * 1  // 640
+#define SCREENH 960 * 1   // 480
 #define CAMERA_X 0
 #define CAMERA_Y 0
 #define CAMERA_SCALE 2.0f
@@ -24,42 +26,36 @@
 
 #define BACKGROUND_IMAGE "resources/background.png"
 
-struct POINT
-{
+struct POINT {
     int x;
     int y;
 
-    POINT(int theX, int theY)
-    {
+    POINT(int theX, int theY) {
         this->x = theX;
         this->y = theY;
     }
 };
 
-enum GameStateEnum
-{
+enum GameStateEnum {
     Playing,
     Quit
 };
 
-struct VECTOR
-{
+struct VECTOR {
     int X = 0;
     int Y = 0;
 
-    VECTOR(int x, int y)
-    {
+    VECTOR(int x, int y) {
         X = x;
         Y = y;
     }
 };
 
-class Game
-{
-private:
+class Game {
+   private:
     GameStateEnum GameState = GameStateEnum::Playing;
     VECTOR PlayerMovement = VECTOR(0, 0);
-    
+
     double FPS = 0;
     double old_time;
     void updateFPS();
@@ -78,8 +74,8 @@ private:
     float cameraScale = CAMERA_SCALE;
     bool isOffScreen(Sprite *sprite);
     void updateNPCs();
-    Sprite* CreateNPC(int x, int y, int directionX);
-    Sprite* CreateLawnmowerNPC(int y);
+    Sprite *CreateNPC(int x, int y, int directionX);
+    Sprite *CreateLawnmowerNPC(int y);
     ConfigDTO config;
     int cameraX = CAMERA_X;
     int cameraY = CAMERA_Y;
@@ -100,9 +96,9 @@ private:
     void initPlayer(std::string animationsFilepath);
     void drawHud();
 
-public:
+   public:
     ~Game();
     int GameMain();
 };
 
-#endif
+#endif  //  GAME_H_

@@ -1,6 +1,6 @@
 
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MAIN_H_
+#define MAIN_H_
 
 #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_DEBUG
 #include "spdlog.h"
@@ -12,4 +12,4 @@
 
 #define BACKGROUND_IMAGE "resources/background.png"
 
-#endif
+#endif  // MAIN_H_

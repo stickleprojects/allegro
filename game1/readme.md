@@ -4,3 +4,10 @@ var transparentRgb = al_map_rgb(200,2,2);
 al_convert_mask_to_alpha (img, transparentRgb);
 
 # display background and move a sprite
+
+
+# Dev environment
+## Install cpplint
+sudo apt-get install python-pip
+sudo pip install cpplint
+

@@ -1,14 +1,14 @@
 
-#ifndef PERSIST_H
-#define PERSIST_H
+#ifndef PERSIST_INCLUDE_ANIMATIONSETFACTORY_H_
+#define PERSIST_INCLUDE_ANIMATIONSETFACTORY_H_
 
-#include "SimpleAnimationFrame.h"
-#include "dto.h"
-#include <vector>
+#include <spdlog.h>
+#include <fstream>
 #include <map>
 #include <string>
-#include <fstream>
-#include <spdlog.h>
+#include <vector>
+#include "SimpleAnimationFrame.h"
+#include "dto.h"
 
 #include <AnimationSet.h>
 
@@ -16,11 +16,10 @@
  * @brief Creates lists of animations keyed by id
  * 
  */
-class AnimationSetFactory
-{
-public:
-	AnimationFrame *create(ALLEGRO_BITMAP *bmp, AnimationSetDTO dto);
-	AnimationSet *create(ALLEGRO_BITMAP *bmp, AnimationSetsDTO dto);
+class AnimationSetFactory {
+   public:
+    AnimationFrame *create(ALLEGRO_BITMAP *bmp, AnimationSetDTO dto);
+    AnimationSet *create(ALLEGRO_BITMAP *bmp, AnimationSetsDTO dto);
 };
 
-#endif
+#endif  // PERSIST_INCLUDE_ANIMATIONSETFACTORY_H_

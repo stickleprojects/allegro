@@ -1,13 +1,10 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef ENTITY_H_
+#define ENTITY_H_
 
 class Entity {
-    public:
-        int X ;
-        int Y ;
-
+   public:
+    int X;
+    int Y;
 };
 
-
-
-#endif
+#endif  // ENTITY_H_

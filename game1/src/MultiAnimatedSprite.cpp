@@ -1,57 +1,40 @@
 #include "MultiAnimatedSprite.h"
 
-void MultiAnimatedSprite::Update()
-{
+void MultiAnimatedSprite::Update() {
     // do nowt
-    if (playAnimations)
-    {
+    if (playAnimations) {
         AnimatedSprite::Update();
-    }
-    else
-    {
+    } else {
         resetCurrentFrame();
     }
 }
-void MultiAnimatedSprite::resetCurrentFrame()
-{
+void MultiAnimatedSprite::resetCurrentFrame() {
     currentFrame = FindAnimationSetById(currentAnimationSetId);
     firstFrame = currentFrame;
 }
-void MultiAnimatedSprite::SetDirection(int x, int y)
-{
+void MultiAnimatedSprite::SetDirection(int x, int y) {
     SPDLOG_DEBUG("setting direction");
 
-    if (x > 0)
-    {
+    if (x > 0) {
         currentFrame = FindAnimationSetById("right");
         currentAnimationSetId = "right";
-    }
-    else if (x < 0)
-    {
+    } else if (x < 0) {
         currentFrame = FindAnimationSetById("left");
         currentAnimationSetId = "left";
-    }
-    else if (y > 0)
-    {
+    } else if (y > 0) {
         currentFrame = FindAnimationSetById("down");
         currentAnimationSetId = "down";
-    }
-    else if (y < 0)
-    {
+    } else if (y < 0) {
         currentFrame = FindAnimationSetById("up");
         currentAnimationSetId = "up";
     }
-    if (currentFrame == NULL)
-    {
+    if (currentFrame == NULL) {
         currentFrame = FindAnimationSetById("right");
         currentAnimationSetId = "right";
     }
-    if (x == 0 && y == 0)
-    {
+    if (x == 0 && y == 0) {
         playAnimations = false;
-    }
-    else
-    {
+    } else {
         playAnimations = true;
     }
     SPDLOG_DEBUG("Direction %s", currentAnimationSetId);
@@ -59,12 +42,10 @@ void MultiAnimatedSprite::SetDirection(int x, int y)
     Sprite::SetDirection(x, y);
 }
 
-AnimationFrame *MultiAnimatedSprite::FindAnimationSetById(std::string id)
-{
+AnimationFrame *MultiAnimatedSprite::FindAnimationSetById(std::string id) {
     return this->animationSet->FindFirstFrameById(id);
 }
-MultiAnimatedSprite::MultiAnimatedSprite(AnimationSet *animationSet, std::string defaultAnimationId) : AnimatedSprite(NULL)
-{
+MultiAnimatedSprite::MultiAnimatedSprite(AnimationSet *animationSet, std::string defaultAnimationId) : AnimatedSprite(NULL) {
     playAnimations = false;
 
     this->animationSet = animationSet;

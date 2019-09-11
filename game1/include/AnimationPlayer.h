@@ -1,15 +1,15 @@
 #include <AnimationFrame.h>
 
-#ifndef ANIMATIONPLAYER_H
-#define ANIMATIONPLAYER_H
+#ifndef ANIMATIONPLAYER_H_
+#define ANIMATIONPLAYER_H_
 
 class AnimationPlayer {
     private:
     AnimationFrame *firstFrame;
 
     public:
-    AnimationPlayer(AnimationFrame* firstFrame);
-}
+    explicit AnimationPlayer(AnimationFrame* firstFrame);
+};
 
 
-#endif
+#endif  // ANIMATIONPLAYER_H_
