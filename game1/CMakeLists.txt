@@ -56,6 +56,7 @@ set(${PROJECT_NAME}_SRCS
             src/Game.cpp
             src/MultiAnimatedSprite.cpp
             src/AnimationSet.cpp
+            src/Spawner.cpp
             persist/src/AnimationSetFactory.cpp
             )
 
