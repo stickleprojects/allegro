@@ -12,11 +12,15 @@ class Spawner {
     int y;
     int spawnFrequency;
     int timeSinceLastSpawn = 0;
-    void spawn();
+
     SpawnFunction spawnFunction;
 
    public:
     Spawner(int y, int spawnFrequency, SpawnFunction spawnFunction);
     void Update();
+    void Spawn();
+    int GetY() { return y; }
+    int GetTimesSinceLastSpawn() { return timeSinceLastSpawn; }
+    int GetSpawnFrequency() { return spawnFrequency; }
 };
 #endif  // SPAWNER_H_

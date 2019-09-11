@@ -12,7 +12,7 @@
 #include "ResourceManager.h"
 #include "SimpleAnimationFrame.h"
 #include "Sprite.h"
-
+#include "Spawner.h"
 #include "AnimationSetFactory.h"
 #include "VectorFuncs.h"
 #include "dto.h"
@@ -70,6 +70,10 @@ class Game {
     ResourceManager *rm = NULL;
     Sprite *player = NULL;
     std::vector<Sprite *> npcs;
+    std::vector<Spawner*> spawners;
+    void initSpawners();
+    void updateSpawners();
+
     Sprite *CreateNPC(std::string animationsFilePath, int startX, int startY, int directionX);
 
     POINT cameraPosition = POINT(0, 0);

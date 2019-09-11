@@ -97,6 +97,17 @@ void Game::drawBackground() {
 void Game::drawHud() {
     auto s = stringFormat("FPS %d Player (%d,%d)", static_cast<int>(FPS), player->X, player->Y);
     al_draw_text(font, al_map_rgb(255, 255, 255), 0, 0, ALLEGRO_ALIGN_LEFT, s.c_str());
+
+    int y = 0;
+    int x = 200;
+    int gap = 10;
+
+    for (auto spwn : spawners) {
+        auto txt = stringFormat("Spawner %d,f=%d,t=%d", spwn->GetY(), spwn->GetSpawnFrequency(), spwn->GetTimesSinceLastSpawn());
+        al_draw_text(font, al_map_rgb(255, 255, 255), x, y, ALLEGRO_ALIGN_LEFT, txt.c_str());
+
+        y += gap;
+    }
 }
 void Game::drawSprites() {
     drawHud();
@@ -191,21 +202,8 @@ Sprite *Game::CreateLawnmowerNPC(int y) {
 
     return CreateNPC(x, y, directionX);
 }
-void Game::initNPCs() {
-    int y = 320;
-    int gap = 43;
 
-    npcs.push_back(CreateLawnmowerNPC(y));
-
-    y += gap;
-    npcs.push_back(CreateLawnmowerNPC(y));
-
-    y += gap;
-    npcs.push_back(CreateLawnmowerNPC(y));
-
-}
 void Game::initSprites() {
-    initNPCs();
     initPlayer("resources/playeranimations.json");
 }
 
@@ -268,8 +266,48 @@ void Game::updateFPS() {
     FPS = 1 / delta;
     old_time = new_time;
 }
+void Game::initSpawners() {
+    int y = 320;
+    int gap = 43;
+
+    auto ls = new Spawner(y, 200, [=](Spawner *src) {
+        auto y = src->GetY();
+        auto tmp = CreateLawnmowerNPC(y);
+        SPDLOG_DEBUG("spawned npc at %d", y);
+        npcs.push_back(tmp);
+    });
+    spawners.push_back(ls);
+
+    y += gap;
+    auto ls2 = new Spawner(y, 250, [=](Spawner *src) {
+        auto y = src->GetY();
+        auto tmp = CreateLawnmowerNPC(y);
+        SPDLOG_DEBUG("spawned npc at %d", y);
+        npcs.push_back(tmp);
+    });
+    spawners.push_back(ls2);
+
+    y += gap;
+    auto ls3 = new Spawner(y, 250, [=](Spawner *src) {
+        auto y = src->GetY();
+        auto tmp = CreateLawnmowerNPC(y);
+        SPDLOG_DEBUG("spawned npc at %d", y);
+        npcs.push_back(tmp);
+    });
+    spawners.push_back(ls3);
+
+    // force immediate spawn
+    for(auto s : spawners) {
+        s->Spawn();
+    }
+}
 bool Game::isOffScreen(Sprite *sprite) {
     return (sprite->X + sprite->Width < MIN_X) || (sprite->X > MAX_X);
+}
+void Game::updateSpawners() {
+    for (auto s : spawners) {
+        s->Update();
+    }
 }
 void Game::updateNPCs() {
     for (auto nps : npcs) {
@@ -300,6 +338,7 @@ int Game::GameMain() {
     }
 
     initSprites();
+    initSpawners();
 
     bool redraw = true;
     ALLEGRO_EVENT event;
@@ -319,6 +358,7 @@ int Game::GameMain() {
             redraw = true;
             moveSprite(player);
             updateNPCs();
+            updateSpawners();
         } else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
             SPDLOG_DEBUG(event);
             GameState = GameStateEnum::Quit;

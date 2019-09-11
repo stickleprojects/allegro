@@ -6,7 +6,7 @@ Spawner::Spawner(int y, int spawnFrequency, SpawnFunction spawnFunction) {
     this->spawnFunction = spawnFunction;
 }
 
-void Spawner::spawn() {
+void Spawner::Spawn() {
     timeSinceLastSpawn = 0;
     spawnFunction(this);
 }
@@ -15,6 +15,6 @@ void Spawner::Update() {
     timeSinceLastSpawn++;
 
     if (timeSinceLastSpawn > spawnFrequency) {
-        spawn();
+        Spawn();
     }
 }
