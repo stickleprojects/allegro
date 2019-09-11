@@ -352,6 +352,33 @@ src/SimpleAnimationFrame.cpp.s:
 	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/SimpleAnimationFrame.cpp.s
 .PHONY : src/SimpleAnimationFrame.cpp.s
 
+src/Spawner.o: src/Spawner.cpp.o
+
+.PHONY : src/Spawner.o
+
+# target to build an object file
+src/Spawner.cpp.o:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Spawner.cpp.o
+.PHONY : src/Spawner.cpp.o
+
+src/Spawner.i: src/Spawner.cpp.i
+
+.PHONY : src/Spawner.i
+
+# target to preprocess a source file
+src/Spawner.cpp.i:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Spawner.cpp.i
+.PHONY : src/Spawner.cpp.i
+
+src/Spawner.s: src/Spawner.cpp.s
+
+.PHONY : src/Spawner.s
+
+# target to generate assembly for a file
+src/Spawner.cpp.s:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Spawner.cpp.s
+.PHONY : src/Spawner.cpp.s
+
 src/Sprite.o: src/Sprite.cpp.o
 
 .PHONY : src/Sprite.o
@@ -440,6 +467,9 @@ help:
 	@echo "... src/SimpleAnimationFrame.o"
 	@echo "... src/SimpleAnimationFrame.i"
 	@echo "... src/SimpleAnimationFrame.s"
+	@echo "... src/Spawner.o"
+	@echo "... src/Spawner.i"
+	@echo "... src/Spawner.s"
 	@echo "... src/Sprite.o"
 	@echo "... src/Sprite.i"
 	@echo "... src/Sprite.s"
