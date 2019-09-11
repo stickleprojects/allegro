@@ -4,7 +4,7 @@
 #define VECTORFUNCS_H_
 
 template <typename T>
-void DeleteFromVector(const std::vector<T>& vector, T const& value) {
+void DeleteFromVector(std::vector<T>& vector, T const& value) {  // NOLINT (runtime/references)
     vector.erase(std::remove(begin(vector), end(vector), value), end(vector));
 }
 
