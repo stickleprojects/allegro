@@ -6,7 +6,8 @@
 
 #include "MultiAnimatedSprite.h"
 #include "spdlog.h"
-
+#include "allegro5/allegro_font.h"
+#include "allegro5/allegro_ttf.h"
 #include "AnimatedSprite.h"
 #include "AnimationFrame.h"
 #include "ResourceManager.h"

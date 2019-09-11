@@ -1,5 +1,5 @@
-#include <vector>
 #include <string>
+#include <vector>
 #include "rpoco/json.hpp"
 
 #ifndef PERSIST_INCLUDE_DTO_H_
@@ -11,10 +11,25 @@ struct PointDTO {
     RPOCO(x, y);
 };
 
+struct FontDTO {
+    std::string file;
+    int size;
+    int flags;
+
+    RPOCO(file, size, flags);
+};
+
+struct HudDTO {
+    FontDTO font;
+
+    RPOCO(font);
+};
+
 struct ConfigDTO {
     PointDTO playerstart;
+    HudDTO hud;
 
-    RPOCO(playerstart);
+    RPOCO(playerstart, hud);
 };
 
 struct RectDTO {

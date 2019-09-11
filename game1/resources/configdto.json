@@ -2,5 +2,12 @@
     "playerstart": {
         "x":300,
         "y":450
+    },
+    "hud": {
+        "font": {
+            "file":"resources/preppie-font.TTF",
+            "size":7,
+            "flags":0
+        }
     }
 }

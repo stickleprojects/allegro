@@ -34,7 +34,14 @@ int Game::init() {
         SPDLOG_ERROR("couldn't initialize keyboard\n");
         return 1;
     }
-
+    if (!al_init_font_addon()) {
+        SPDLOG_ERROR("couldn't intialize font\n");
+        return 1;
+    }
+    if (!al_init_ttf_addon()) {
+        SPDLOG_ERROR("couldn't intialize ttf\n");
+        return 1;
+    }
     timer = al_create_timer(1.0 / 30.0);
     if (!timer) {
         SPDLOG_ERROR("couldn't initialize timer\n");
@@ -54,10 +61,11 @@ int Game::init() {
         SPDLOG_ERROR("couldn't initialize display");
         return 1;
     }
+    SPDLOG_INFO("font {0}", config.hud.font.file.c_str());
 
-    font = al_create_builtin_font();
+    font = al_load_ttf_font(config.hud.font.file.c_str(), config.hud.font.size, config.hud.font.flags);
     if (!font) {
-        SPDLOG_ERROR("couldn't initialize font");
+        SPDLOG_ERROR("couldn't load font: {0}", config.hud.font.file);
         return 1;
     }
 
@@ -297,7 +305,7 @@ void Game::initSpawners() {
     spawners.push_back(ls3);
 
     // force immediate spawn
-    for(auto s : spawners) {
+    for (auto s : spawners) {
         s->Spawn();
     }
 }
@@ -326,13 +334,14 @@ void Game::updateNPCs() {
     }
 }
 int Game::GameMain() {
+    if (initConfig() != 0) {
+        return 1;
+    }
+
     if (init() != 0) {
         return 1;
     }
 
-    if (initConfig() != 0) {
-        return 1;
-    }
     if (initResources() != 0) {
         return 2;
     }
