@@ -182,10 +182,10 @@ Sprite *Game::CreateNPC(int x, int y, int directionX) {
     return CreateNPC(animationsFilepath, x, y, directionX);
 }
 Sprite *Game::CreateLawnmowerNPC(int y) {
-    int x = SCREENW / 2;
+    int x = MAX_X;
     int directionX = -1;
     if (y == 320 || y == (320 + (43 * 2))) {
-        x = 0;
+        x = MIN_X;
         directionX = 1;
     }
 
@@ -195,13 +195,14 @@ void Game::initNPCs() {
     int y = 320;
     int gap = 43;
 
-    npcs.push_back(CreateNPC(0, y, 1));
+    npcs.push_back(CreateLawnmowerNPC(y));
 
     y += gap;
-    npcs.push_back(CreateNPC(40, y, -1));
+    npcs.push_back(CreateLawnmowerNPC(y));
 
     y += gap;
-    npcs.push_back(CreateNPC(0, y, 1));
+    npcs.push_back(CreateLawnmowerNPC(y));
+
 }
 void Game::initSprites() {
     initNPCs();
@@ -268,7 +269,7 @@ void Game::updateFPS() {
     old_time = new_time;
 }
 bool Game::isOffScreen(Sprite *sprite) {
-    return (sprite->X + sprite->Width < 0) || (sprite->X > (SCREENW / 2));
+    return (sprite->X + sprite->Width < MIN_X) || (sprite->X > MAX_X);
 }
 void Game::updateNPCs() {
     for (auto nps : npcs) {

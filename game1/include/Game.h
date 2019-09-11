@@ -19,6 +19,9 @@
 
 #define SCREENW 1024 * 1  // 640
 #define SCREENH 960 * 1   // 480
+#define MIN_X -100
+#define MAX_X 500
+
 #define CAMERA_X 0
 #define CAMERA_Y 0
 #define CAMERA_SCALE 2.0f
