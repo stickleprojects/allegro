@@ -4,7 +4,6 @@
  **/
 
 #include "Game.h"
-#include "StringFormat.h"
 
 void Game::moveSprite(Sprite *sprite) {
     sprite->X += PlayerMovement.X;
@@ -111,7 +110,7 @@ void Game::drawHud() {
     int gap = 10;
 
     for (auto spwn : spawners) {
-        auto txt = stringFormat("Spawner %d,f=%d,t=%d", spwn->GetY(), spwn->GetSpawnFrequency(), spwn->GetTimesSinceLastSpawn());
+        auto txt = spwn->ToString();
         al_draw_text(font, al_map_rgb(255, 255, 255), x, y, ALLEGRO_ALIGN_LEFT, txt.c_str());
 
         y += gap;
@@ -278,8 +277,8 @@ void Game::initSpawners() {
     int y = 320;
     int gap = 43;
 
-    auto ls = new Spawner(y, 200, [=](Spawner *src) {
-        auto y = src->GetY();
+    auto ls = new LambdaSpawner(y, 200, [=](Spawner *src) {
+        
         auto tmp = CreateLawnmowerNPC(y);
         SPDLOG_DEBUG("spawned npc at %d", y);
         npcs.push_back(tmp);
@@ -287,8 +286,7 @@ void Game::initSpawners() {
     spawners.push_back(ls);
 
     y += gap;
-    auto ls2 = new Spawner(y, 250, [=](Spawner *src) {
-        auto y = src->GetY();
+    auto ls2 = new LambdaSpawner(y, 250, [=](Spawner *src) {
         auto tmp = CreateLawnmowerNPC(y);
         SPDLOG_DEBUG("spawned npc at %d", y);
         npcs.push_back(tmp);
@@ -296,8 +294,7 @@ void Game::initSpawners() {
     spawners.push_back(ls2);
 
     y += gap;
-    auto ls3 = new Spawner(y, 250, [=](Spawner *src) {
-        auto y = src->GetY();
+    auto ls3 = new LambdaSpawner(y, 250, [=](Spawner *src) {
         auto tmp = CreateLawnmowerNPC(y);
         SPDLOG_DEBUG("spawned npc at %d", y);
         npcs.push_back(tmp);

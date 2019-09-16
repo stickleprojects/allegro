@@ -2,25 +2,15 @@
 #ifndef SPAWNER_H_
 #define SPAWNER_H_
 
-#include <functional>
-class Spawner;
+#include <string>
 
-typedef std::function<void(Spawner*)> SpawnFunction;
+#include "StringFormat.h"
 
 class Spawner {
-   private:
-    int y;
-    int spawnFrequency;
-    int timeSinceLastSpawn = 0;
-
-    SpawnFunction spawnFunction;
-
    public:
-    Spawner(int y, int spawnFrequency, SpawnFunction spawnFunction);
-    void Update();
-    void Spawn();
-    int GetY() { return y; }
-    int GetTimesSinceLastSpawn() { return timeSinceLastSpawn; }
-    int GetSpawnFrequency() { return spawnFrequency; }
+    virtual void Update();
+    virtual void Spawn();
+    virtual std::string ToString();
 };
+
 #endif  // SPAWNER_H_

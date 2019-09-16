@@ -12,8 +12,11 @@
 #include "AnimationFrame.h"
 #include "ResourceManager.h"
 #include "SimpleAnimationFrame.h"
+#include "StringFormat.h"
+
 #include "Sprite.h"
 #include "Spawner.h"
+#include "Spawners/LambdaSpawner.h"
 #include "AnimationSetFactory.h"
 #include "VectorFuncs.h"
 #include "dto.h"
