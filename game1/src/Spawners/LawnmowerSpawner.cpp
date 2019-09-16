@@ -8,9 +8,11 @@ LawnmowerSpawner::LawnmowerSpawner(int min_x, int max_x, NPCSpawnAndAddFunction 
 
 void LawnmowerSpawner::initLanes(int min_x, int max_x)
 {
-    lanes[0] = LANE(1, min_x, 320);
-    lanes[1] = LANE(-1, max_x, 364);
-    lanes[2] = LANE(1, min_x, 400);
+    int gap = 150;
+    int big_gap=2;
+    lanes[0] = LANE(1, min_x, 320, {gap, gap, gap*big_gap});
+    lanes[1] = LANE(-1, max_x, 364, {gap,  gap*big_gap});
+    lanes[2] = LANE(1, min_x, 400, {gap, gap,  gap*big_gap});
 }
 void LawnmowerSpawner::spawnLawnmowerNPC(int laneIdx)
 {
@@ -29,6 +31,11 @@ void LawnmowerSpawner::spawnLawnmowerNPC(int laneIdx)
 void LawnmowerSpawner::Update()
 {
     // do nowt, although we should trigger a respawn here
+    for(int l=0; l <=2 ; l++) {
+        if(!lanes[l].Update()) {
+            spawnLawnmowerNPC(l);
+        }
+    }
 }
 
 void LawnmowerSpawner::Spawn()
