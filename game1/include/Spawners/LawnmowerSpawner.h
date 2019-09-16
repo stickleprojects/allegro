@@ -3,10 +3,11 @@
 
 #include "Sprite.h"
 #include "Spawner.h"
+#include "Logging.h"
 
 #include <functional>
 
-typedef std::function<Sprite*(int,int,int)> NPCCreatorFunction;
+typedef std::function<void(int,int,int)> NPCSpawnAndAddFunction;
 
 struct LANE {
     int xinc;
@@ -18,17 +19,18 @@ struct LANE {
         this->ypos = ypos;
         this->xpos = xpos;
     }
+    LANE(){}
 };
 
 class LawnmowerSpawner:public Spawner {
     private:
-        Sprite* CreateLawnmowerNPC(int laneIdx);
+        void spawnLawnmowerNPC(int laneIdx);
         LANE lanes[3];
         void initLanes(int minx, int maxx);
-        NPCCreatorFunction npcCreatorFunction;
-        
+        NPCSpawnAndAddFunction npcSpawnAndAddFunction;
+
     public:
-        LawnmowerSpawner(int minx, int maxx, NPCCreatorFunction npcCreatorFunction);
+        LawnmowerSpawner(int minx, int maxx, NPCSpawnAndAddFunction npcSpawnAndAddFunction);
         void Update() override;
         void Spawn() override;
         

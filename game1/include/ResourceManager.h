@@ -9,7 +9,7 @@
 
 #include "BitmapResource.h"
 #include "dto.h"
-#include "spdlog.h"
+#include "Logging.h"
 
 #ifndef RESOURCEMANAGER_H_
 #define RESOURCEMANAGER_H_
@@ -34,11 +34,11 @@ class ResourceManager {
     template <class T>
     T LoadJsonDto(std::string filepath) {
         T dto;
-        SPDLOG_INFO("Reading JsonDTO: {0}", filepath);
+        SPDLOG_TRACE("Reading JsonDTO: {0}", filepath);
 
         std::ifstream is(filepath.c_str());
         if (rpoco::parse_json(is, dto)) {
-            SPDLOG_INFO("JsonDTO Read Ok\n {0}", rpoco::to_json(dto).c_str());
+            SPDLOG_TRACE("JsonDTO Read Ok\n {0}", rpoco::to_json(dto).c_str());
         }
 
         return dto;
