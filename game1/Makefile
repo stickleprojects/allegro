@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -379,6 +379,60 @@ src/Spawner.cpp.s:
 	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Spawner.cpp.s
 .PHONY : src/Spawner.cpp.s
 
+src/Spawners/LambdaSpawner.o: src/Spawners/LambdaSpawner.cpp.o
+
+.PHONY : src/Spawners/LambdaSpawner.o
+
+# target to build an object file
+src/Spawners/LambdaSpawner.cpp.o:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Spawners/LambdaSpawner.cpp.o
+.PHONY : src/Spawners/LambdaSpawner.cpp.o
+
+src/Spawners/LambdaSpawner.i: src/Spawners/LambdaSpawner.cpp.i
+
+.PHONY : src/Spawners/LambdaSpawner.i
+
+# target to preprocess a source file
+src/Spawners/LambdaSpawner.cpp.i:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Spawners/LambdaSpawner.cpp.i
+.PHONY : src/Spawners/LambdaSpawner.cpp.i
+
+src/Spawners/LambdaSpawner.s: src/Spawners/LambdaSpawner.cpp.s
+
+.PHONY : src/Spawners/LambdaSpawner.s
+
+# target to generate assembly for a file
+src/Spawners/LambdaSpawner.cpp.s:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Spawners/LambdaSpawner.cpp.s
+.PHONY : src/Spawners/LambdaSpawner.cpp.s
+
+src/Spawners/LawnmowerSpawner.o: src/Spawners/LawnmowerSpawner.cpp.o
+
+.PHONY : src/Spawners/LawnmowerSpawner.o
+
+# target to build an object file
+src/Spawners/LawnmowerSpawner.cpp.o:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Spawners/LawnmowerSpawner.cpp.o
+.PHONY : src/Spawners/LawnmowerSpawner.cpp.o
+
+src/Spawners/LawnmowerSpawner.i: src/Spawners/LawnmowerSpawner.cpp.i
+
+.PHONY : src/Spawners/LawnmowerSpawner.i
+
+# target to preprocess a source file
+src/Spawners/LawnmowerSpawner.cpp.i:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Spawners/LawnmowerSpawner.cpp.i
+.PHONY : src/Spawners/LawnmowerSpawner.cpp.i
+
+src/Spawners/LawnmowerSpawner.s: src/Spawners/LawnmowerSpawner.cpp.s
+
+.PHONY : src/Spawners/LawnmowerSpawner.s
+
+# target to generate assembly for a file
+src/Spawners/LawnmowerSpawner.cpp.s:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Spawners/LawnmowerSpawner.cpp.s
+.PHONY : src/Spawners/LawnmowerSpawner.cpp.s
+
 src/Sprite.o: src/Sprite.cpp.o
 
 .PHONY : src/Sprite.o
@@ -405,6 +459,33 @@ src/Sprite.s: src/Sprite.cpp.s
 src/Sprite.cpp.s:
 	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Sprite.cpp.s
 .PHONY : src/Sprite.cpp.s
+
+src/StringFormat.o: src/StringFormat.cpp.o
+
+.PHONY : src/StringFormat.o
+
+# target to build an object file
+src/StringFormat.cpp.o:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/StringFormat.cpp.o
+.PHONY : src/StringFormat.cpp.o
+
+src/StringFormat.i: src/StringFormat.cpp.i
+
+.PHONY : src/StringFormat.i
+
+# target to preprocess a source file
+src/StringFormat.cpp.i:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/StringFormat.cpp.i
+.PHONY : src/StringFormat.cpp.i
+
+src/StringFormat.s: src/StringFormat.cpp.s
+
+.PHONY : src/StringFormat.s
+
+# target to generate assembly for a file
+src/StringFormat.cpp.s:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/StringFormat.cpp.s
+.PHONY : src/StringFormat.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -470,9 +551,18 @@ help:
 	@echo "... src/Spawner.o"
 	@echo "... src/Spawner.i"
 	@echo "... src/Spawner.s"
+	@echo "... src/Spawners/LambdaSpawner.o"
+	@echo "... src/Spawners/LambdaSpawner.i"
+	@echo "... src/Spawners/LambdaSpawner.s"
+	@echo "... src/Spawners/LawnmowerSpawner.o"
+	@echo "... src/Spawners/LawnmowerSpawner.i"
+	@echo "... src/Spawners/LawnmowerSpawner.s"
 	@echo "... src/Sprite.o"
 	@echo "... src/Sprite.i"
 	@echo "... src/Sprite.s"
+	@echo "... src/StringFormat.o"
+	@echo "... src/StringFormat.i"
+	@echo "... src/StringFormat.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

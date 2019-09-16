@@ -5,15 +5,18 @@
 #include <vector>
 
 #include "MultiAnimatedSprite.h"
-#include "spdlog.h"
+#include "Logging.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
 #include "AnimatedSprite.h"
 #include "AnimationFrame.h"
 #include "ResourceManager.h"
 #include "SimpleAnimationFrame.h"
+#include "StringFormat.h"
+
 #include "Sprite.h"
 #include "Spawner.h"
+#include "Spawners/LawnmowerSpawner.h"
 #include "AnimationSetFactory.h"
 #include "VectorFuncs.h"
 #include "dto.h"
@@ -72,6 +75,7 @@ class Game {
     Sprite *player = NULL;
     std::vector<Sprite *> npcs;
     std::vector<Spawner*> spawners;
+    void initLawnmowerSpawner();
     void initSpawners();
     void updateSpawners();
 
@@ -82,8 +86,7 @@ class Game {
     float cameraScale = CAMERA_SCALE;
     bool isOffScreen(Sprite *sprite);
     void updateNPCs();
-    Sprite *CreateNPC(int x, int y, int directionX);
-    Sprite *CreateLawnmowerNPC(int y);
+    Sprite *CreateLawnmowerSprite(int x, int y, int directionX);
     ConfigDTO config;
     int cameraX = CAMERA_X;
     int cameraY = CAMERA_Y;

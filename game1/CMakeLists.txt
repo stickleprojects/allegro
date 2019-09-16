@@ -40,6 +40,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 # Add the include folder to the include path
 include_directories(
   ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/include/Spawners
   ${PROJECT_SOURCE_DIR}/persist/include
   ${PROJECT_SOURCE_DIR}/external/spdlog/include/spdlog
   
@@ -57,6 +58,9 @@ set(${PROJECT_NAME}_SRCS
             src/MultiAnimatedSprite.cpp
             src/AnimationSet.cpp
             src/Spawner.cpp
+            src/StringFormat.cpp
+            src/Spawners/LawnmowerSpawner.cpp
+            src/Spawners/LambdaSpawner.cpp
             persist/src/AnimationSetFactory.cpp
             )
 

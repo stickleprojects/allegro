@@ -2,8 +2,7 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
-#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_DEBUG
-#include "spdlog.h"
+#include "Logging.h"
 
 #include "Game.h"
 
