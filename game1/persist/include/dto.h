@@ -25,11 +25,19 @@ struct HudDTO {
     RPOCO(font);
 };
 
+struct LawnmowerDTO {
+    std::vector<std::string> colorsRGBA;
+
+    RPOCO(colorsRGBA)
+};
+
 struct ConfigDTO {
     PointDTO playerstart;
     HudDTO hud;
 
-    RPOCO(playerstart, hud);
+    LawnmowerDTO lawnmowers;
+
+    RPOCO(playerstart, hud, lawnmowers);
 };
 
 struct RectDTO {

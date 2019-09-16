@@ -1,17 +1,22 @@
-#include "BitmapResource.h"
-#include "Entity.h"
 
 #ifndef SPRITE_H_
 #define SPRITE_H_
 
-class Sprite : public Entity {
-   private:
+#include "BitmapResource.h"
+#include "Entity.h"
+#include "allegro5/allegro_color.h"
+
+class Sprite : public Entity
+{
+private:
     BitmapResource *bmp;
 
-   protected:
+protected:
     virtual ALLEGRO_BITMAP *GetImage();
+    bool color_set = false;
+    ALLEGRO_COLOR color;
 
-   public:
+public:
     int Width = 16;
     int Height = 16;
     int x_direction, y_direction;
@@ -23,7 +28,9 @@ class Sprite : public Entity {
     virtual void Update();
     virtual bool Draw();
     virtual void Move();
+    void SetColor(char r, char g, char b, char a);
+    void SetColor(ALLEGRO_COLOR color);
     void SetDimensions(int w, int h);
 };
 
-#endif  // SPRITE_H_
+#endif // SPRITE_H_

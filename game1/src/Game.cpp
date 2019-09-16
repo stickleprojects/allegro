@@ -194,7 +194,7 @@ void Game::initPlayer(std::string animationsFilepath)
     player->X = config.playerstart.x;
     player->Y = config.playerstart.y;
 }
-Sprite *Game::CreateNPC(std::string animationsFilepath, int startX, int startY, int directionX)
+Sprite *Game::CreateNPC(std::string animationsFilepath, int startX, int startY, int directionX, ALLEGRO_COLOR color)
 {
     auto dto = rm->LoadJsonDto<AnimationSetsDTO>(animationsFilepath);
 
@@ -217,6 +217,8 @@ Sprite *Game::CreateNPC(std::string animationsFilepath, int startX, int startY, 
     npc->X = startX;
     npc->Y = startY;
 
+    npc->SetColor(color);
+
     npc->SetDirection(directionX, 0);
 
     // set dims from teh first frame
@@ -225,11 +227,11 @@ Sprite *Game::CreateNPC(std::string animationsFilepath, int startX, int startY, 
 
     return npc;
 }
-Sprite *Game::CreateLawnmowerSprite(int x, int y, int directionX)
+Sprite *Game::CreateLawnmowerSprite(ALLEGRO_COLOR color, int x, int y, int directionX)
 {
     std::string animationsFilepath = "resources/np1animations.json";
 
-    return CreateNPC(animationsFilepath, x, y, directionX);
+    return CreateNPC(animationsFilepath, x, y, directionX, color);
 }
 
 void Game::initSprites()
@@ -310,11 +312,41 @@ void Game::updateFPS()
     FPS = 1 / delta;
     old_time = new_time;
 }
+std::vector<ALLEGRO_COLOR> Game::createColorsFromRGBAStrings(std::vector<std::string> data)
+{
+    std::vector<ALLEGRO_COLOR> ret;
+    for (auto hexCode : data)
+    {
+        // convert string to upper case
+        std::for_each(hexCode.begin(), hexCode.end(), [](char &c) {
+            c = ::toupper(c);
+        });
+        // split string into tokens
+        // ... and extract the rgb values.
+        uint r, g, b, a;
+
+        std::istringstream(hexCode.substr(0, 2)) >> std::hex >> r;
+        std::istringstream(hexCode.substr(2, 2)) >> std::hex >> g;
+        std::istringstream(hexCode.substr(4, 2)) >> std::hex >> b;
+        a = 255;
+        // alpha defaults to 255
+        // if (hexCode.length() > 6)
+        // {
+        //     std::istringstream(hexCode.substr(6, 2)) >> std::hex >> a;
+        // }
+        SPDLOG_DEBUG("{0}=argb({1},{2},{3},{4})", hexCode, r, g, b, a);
+        ret.push_back(al_map_rgba(r, g, b, a));
+    }
+    return ret;
+}
 void Game::initLawnmowerSpawner()
 {
+    auto lawnmowerColors = createColorsFromRGBAStrings(config.lawnmowers.colorsRGBA);
+    ALLEGRO_COLOR *lmc_array = lawnmowerColors.data();
 
     auto sp = new LawnmowerSpawner(MIN_X, MAX_X, [=](int x, int y, int direction) {
-        npcs.push_back (CreateLawnmowerSprite(x, y, direction));
+        ALLEGRO_COLOR c = lmc_array[(y - 320) % 32];
+        npcs.push_back(CreateLawnmowerSprite(c, x, y, direction));
     });
 
     spawners.push_back(sp);

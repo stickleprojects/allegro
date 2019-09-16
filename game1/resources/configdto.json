@@ -1,13 +1,20 @@
 {
     "playerstart": {
-        "x":300,
-        "y":450
+        "x": 300,
+        "y": 450
     },
     "hud": {
         "font": {
-            "file":"resources/preppie-font.TTF",
-            "size":7,
-            "flags":0
+            "file": "resources/preppie-font.TTF",
+            "size": 7,
+            "flags": 0
         }
+    },
+    "lawnmowers": {
+        "colorsRGBA": [
+            "ffa0a0ff",
+            "a0ffa0ff",
+            "a0a0ffff"
+        ]
     }
 }

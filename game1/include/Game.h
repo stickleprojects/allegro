@@ -3,6 +3,9 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <sstream>
+#include <random>
 
 #include "MultiAnimatedSprite.h"
 #include "Logging.h"
@@ -21,8 +24,8 @@
 #include "VectorFuncs.h"
 #include "dto.h"
 
-#define SCREENW 1024 * 1  // 640
-#define SCREENH 960 * 1   // 480
+#define SCREENW 1024 * 1 // 640
+#define SCREENH 960 * 1  // 480
 #define MIN_X -100
 #define MAX_X 500
 
@@ -33,35 +36,42 @@
 
 #define BACKGROUND_IMAGE "resources/background.png"
 
-struct POINT {
+struct POINT
+{
     int x;
     int y;
 
-    POINT(int theX, int theY) {
+    POINT(int theX, int theY)
+    {
         this->x = theX;
         this->y = theY;
     }
 };
 
-enum GameStateEnum {
+enum GameStateEnum
+{
     Playing,
     Quit
 };
 
-struct VECTOR {
+struct VECTOR
+{
     int X = 0;
     int Y = 0;
 
-    VECTOR(int x, int y) {
+    VECTOR(int x, int y)
+    {
         X = x;
         Y = y;
     }
 };
 
-class Game {
-   private:
+class Game
+{
+private:
     GameStateEnum GameState = GameStateEnum::Playing;
     VECTOR PlayerMovement = VECTOR(0, 0);
+    std::vector<ALLEGRO_COLOR> createColorsFromRGBAStrings(std::vector<std::string> data);
 
     double FPS = 0;
     double old_time;
@@ -74,19 +84,19 @@ class Game {
     ResourceManager *rm = NULL;
     Sprite *player = NULL;
     std::vector<Sprite *> npcs;
-    std::vector<Spawner*> spawners;
+    std::vector<Spawner *> spawners;
     void initLawnmowerSpawner();
     void initSpawners();
     void updateSpawners();
 
-    Sprite *CreateNPC(std::string animationsFilePath, int startX, int startY, int directionX);
+    Sprite *CreateNPC(std::string animationsFilePath, int startX, int startY, int directionX, ALLEGRO_COLOR color);
 
     POINT cameraPosition = POINT(0, 0);
     ALLEGRO_TRANSFORM camera;
     float cameraScale = CAMERA_SCALE;
     bool isOffScreen(Sprite *sprite);
     void updateNPCs();
-    Sprite *CreateLawnmowerSprite(int x, int y, int directionX);
+    Sprite *CreateLawnmowerSprite(ALLEGRO_COLOR color, int x, int y, int directionX);
     ConfigDTO config;
     int cameraX = CAMERA_X;
     int cameraY = CAMERA_Y;
@@ -107,9 +117,9 @@ class Game {
     void initPlayer(std::string animationsFilepath);
     void drawHud();
 
-   public:
+public:
     ~Game();
     int GameMain();
 };
 
-#endif  //  GAME_H_
+#endif //  GAME_H_
