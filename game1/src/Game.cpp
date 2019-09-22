@@ -268,7 +268,6 @@ void Game::updateFPS() {
 std::vector<ALLEGRO_COLOR> Game::createColorsFromRGBAStrings(std::vector<std::string> data) {
     std::vector<ALLEGRO_COLOR> ret;
     for (auto hexCode : data) {
-        
         auto c = al_color_html(hexCode.c_str());
 
         ret.push_back(c);
@@ -280,7 +279,8 @@ void Game::initLawnmowerSpawner() {
     ALLEGRO_COLOR *lmc_array = lawnmowerColors.data();
 
     auto sp = new LawnmowerSpawner(MIN_X, MAX_X, [=](int x, int y, int direction) {
-        ALLEGRO_COLOR c = lmc_array[(y - 320) % 32];
+        // ALLEGRO_COLOR c = lmc_array[(y - 320) % 32];
+        ALLEGRO_COLOR c = lmc_array[1];
         SPDLOG_DEBUG("lawnmower color {0}", c);
         npcs.push_back(CreateLawnmowerSprite(c, x, y, direction));
     });

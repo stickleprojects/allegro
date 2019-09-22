@@ -12,9 +12,12 @@
     },
     "lawnmowers": {
         "colorsRGBA": [
-            "ffa0a0ff",
-            "a0ffa0ff",
-            "a0a0ffff"
+            "#ff0000",
+            "#00ff00",
+            "#0000ff",
+            "#823666",
+            "#534c2d",
+            "#764215"
         ]
     }
 }
