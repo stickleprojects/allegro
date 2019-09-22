@@ -3,10 +3,11 @@
 
 #include <AnimationSet.h>
 #include <AnimationSetFactory.h>
-#include <spdlog.h>
+
 #include <map>
 #include <string>
 #include "AnimatedSprite.h"
+#include "Logging.h"
 
 class MultiAnimatedSprite : public AnimatedSprite {
    private:

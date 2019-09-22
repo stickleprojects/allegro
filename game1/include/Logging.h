@@ -5,7 +5,9 @@
     #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
 #endif
 
-#include "spdlog.h"
+#include <spdlog.h>
+#include <LoggingCustomObjects.h>
+
 
 
 #endif  // LOGGING_H_

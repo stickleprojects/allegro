@@ -11,6 +11,7 @@
 #include "Logging.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
+#include "allegro5/allegro_color.h"
 #include "AnimatedSprite.h"
 #include "AnimationFrame.h"
 #include "ResourceManager.h"
@@ -24,7 +25,7 @@
 #include "VectorFuncs.h"
 #include "dto.h"
 
-#define SCREENW 1024 * 1 // 640
+#define SCREENW 1024 * 1  // 640
 #define SCREENH 960 * 1  // 480
 #define MIN_X -100
 #define MAX_X 500

@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -270,6 +270,33 @@ src/Game.s: src/Game.cpp.s
 src/Game.cpp.s:
 	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/Game.cpp.s
 .PHONY : src/Game.cpp.s
+
+src/LoggingCustomObjects.o: src/LoggingCustomObjects.cpp.o
+
+.PHONY : src/LoggingCustomObjects.o
+
+# target to build an object file
+src/LoggingCustomObjects.cpp.o:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/LoggingCustomObjects.cpp.o
+.PHONY : src/LoggingCustomObjects.cpp.o
+
+src/LoggingCustomObjects.i: src/LoggingCustomObjects.cpp.i
+
+.PHONY : src/LoggingCustomObjects.i
+
+# target to preprocess a source file
+src/LoggingCustomObjects.cpp.i:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/LoggingCustomObjects.cpp.i
+.PHONY : src/LoggingCustomObjects.cpp.i
+
+src/LoggingCustomObjects.s: src/LoggingCustomObjects.cpp.s
+
+.PHONY : src/LoggingCustomObjects.s
+
+# target to generate assembly for a file
+src/LoggingCustomObjects.cpp.s:
+	$(MAKE) -f CMakeFiles/sprite-test.dir/build.make CMakeFiles/sprite-test.dir/src/LoggingCustomObjects.cpp.s
+.PHONY : src/LoggingCustomObjects.cpp.s
 
 src/MultiAnimatedSprite.o: src/MultiAnimatedSprite.cpp.o
 
@@ -539,6 +566,9 @@ help:
 	@echo "... src/Game.o"
 	@echo "... src/Game.i"
 	@echo "... src/Game.s"
+	@echo "... src/LoggingCustomObjects.o"
+	@echo "... src/LoggingCustomObjects.i"
+	@echo "... src/LoggingCustomObjects.s"
 	@echo "... src/MultiAnimatedSprite.o"
 	@echo "... src/MultiAnimatedSprite.i"
 	@echo "... src/MultiAnimatedSprite.s"

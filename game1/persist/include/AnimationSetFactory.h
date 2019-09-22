@@ -2,11 +2,12 @@
 #ifndef PERSIST_INCLUDE_ANIMATIONSETFACTORY_H_
 #define PERSIST_INCLUDE_ANIMATIONSETFACTORY_H_
 
-#include <spdlog.h>
+
 #include <fstream>
 #include <map>
 #include <string>
 #include <vector>
+#include "Logging.h"
 #include "SimpleAnimationFrame.h"
 #include "dto.h"
 

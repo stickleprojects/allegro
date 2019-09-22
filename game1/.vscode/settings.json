@@ -47,6 +47,20 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "utility": "cpp",
-        "memory_resource": "cpp"
+        "memory_resource": "cpp",
+        "bitset": "cpp",
+        "cstring": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "algorithm": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "regex": "cpp",
+        "set": "cpp",
+        "string": "cpp",
+        "iomanip": "cpp",
+        "variant": "cpp"
     }
 }

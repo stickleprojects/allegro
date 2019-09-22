@@ -59,6 +59,7 @@ set(${PROJECT_NAME}_SRCS
             src/AnimationSet.cpp
             src/Spawner.cpp
             src/StringFormat.cpp
+            src/LoggingCustomObjects.cpp
             src/Spawners/LawnmowerSpawner.cpp
             src/Spawners/LambdaSpawner.cpp
             persist/src/AnimationSetFactory.cpp
